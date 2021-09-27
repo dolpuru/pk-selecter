@@ -23,7 +23,7 @@ function gitbookmove(){
   location.href ='https://doongu.gitbook.io/pk_selecter/';
 }
 function page2(){
-  location.href ='../page2/page2.html';
+  location.href ='route';
 }
 function loginmove() {
   document.getElementById("total").style.display = "none";
