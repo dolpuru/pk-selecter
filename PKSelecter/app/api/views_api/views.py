@@ -3,8 +3,8 @@ static API
 """
 
 from flask import Blueprint, render_template
-from app.views import views_bp
-from app.api import login_api
+from api.views_api import views_bp
+
 
 """
 기본 view를 return

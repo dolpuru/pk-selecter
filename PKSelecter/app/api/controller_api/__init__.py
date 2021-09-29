@@ -3,6 +3,6 @@ Sample API Module Package
 """
 from flask import Blueprint
 
-sample_api = Blueprint('sample_api', __name__)
+controller_bp = Blueprint('controller_bp', __name__)
 
-from . import calculator, info
+# from . import login_api
