@@ -2,16 +2,15 @@
 """
 Application Factory Module
 """
-from datetime import datetime
 from flask import Flask
-from flask.json import JSONEncoder
-from app import api
 # from app.api.controller_api import controller_bp
-from app.api.views_api import views_bp
+from .api.views_api import views_bp
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__,
+        static_folder='./templates/',
+        template_folder='./templates/')
         # import_name=__name__,
         # instance_relative_config=True,
         # static_url_path='/',
@@ -24,6 +23,6 @@ def create_app():
     # config.init_app(app)
     # api.init_app(app)
 
-    # app.register_blueprint(controller_bp)
+    # app.register_blueprint(controller_bp)r
     app.register_blueprint(views_bp,  url_prefix='/')
     return app
