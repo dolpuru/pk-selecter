@@ -28,9 +28,6 @@ def login_check_and_get_session(lms_id, lms_pw):
         session_url  = "https://lms.pknu.ac.kr/ilos/lo/login.acl" # 세션을 얻을 url
 
         data = {
-            "returnURL": "", 
-            "challenge" : "", 
-            "response" : "", 
             "usr_id" : lms_id, # LMS 아이디
             "usr_pwd" : lms_pw # LMS 비밀번호
         }

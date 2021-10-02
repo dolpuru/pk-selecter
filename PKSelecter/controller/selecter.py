@@ -5,15 +5,14 @@ import requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# session = requests.Session()
 
 def get_subject_information(session):
-    # global session
+
 
     return_subject_list = []
 
     subject_craw_url = "https://lms.pknu.ac.kr/ilos/main/main_form.acl" # 학수번호와 과목 명을 크롤링함
-    request = session.post(craw_url, verify=False)
+    request = session.post(subject_craw_url, verify=False)
     soup = BeautifulSoup(request.text, "html.parser") #main에 요청보내서 학수번호 알아내기
     temp_subject_list = soup.findAll("em", {"sub", "sub_open"})
 
@@ -25,7 +24,7 @@ def get_subject_information(session):
 
 
 def get_subject_details_information(subject_list, session):
-    # global session
+
 
     craw_url = "https://lms.pknu.ac.kr/ilos/st/course/eclass_room2.acl"
     sub_main = "https://lms.pknu.ac.kr/ilos/st/course/submain_form.acl"
