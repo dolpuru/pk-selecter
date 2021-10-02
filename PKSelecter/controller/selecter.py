@@ -5,38 +5,10 @@ import requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-session = requests.Session()
+# session = requests.Session()
 
-
-def get_session(lms_id, lms_pw):
-    global session
-
-    session_url  = "https://lms.pknu.ac.kr/ilos/lo/login.acl" # 세션을 얻을 url
-
-    data = {
-        "returnURL": "", 
-        "challenge" : "", 
-        "response" : "", 
-        "usr_id" : lms_id, # LMS 아이디
-        "usr_pwd" : lms_pw # LMS 비밀번호
-    }
-
-    request = session.post(session_url ,data = data, verify=False)
-    confirm_login = BeautifulSoup(request.text, "html.parser")
-
-
-    if "로그인 정보가 일치하지 않습니다." in confirm_login.text:
-        session.close() #세션 닫기
-
-        return False
-    else:    
-        request.raise_for_status() #세션을 얻고 True 반환
-        return True
-
-
-
-def get_subject_information():
-    global session
+def get_subject_information(session):
+    # global session
 
     return_subject_list = []
 
@@ -52,8 +24,8 @@ def get_subject_information():
 
 
 
-def get_subject_details_information(subject_list):
-    global session
+def get_subject_details_information(subject_list, session):
+    # global session
 
     craw_url = "https://lms.pknu.ac.kr/ilos/st/course/eclass_room2.acl"
     sub_main = "https://lms.pknu.ac.kr/ilos/st/course/submain_form.acl"
@@ -83,8 +55,6 @@ def get_subject_details_information(subject_list):
             print(temp_detail_sub_info[i]['href'])
         print( "\n" * 2)
 
-a = get_session("201712672", "password")
-
-subject_list = get_subject_information()
-# print(subject_list)
-get_subject_details_information(subject_list)
+# a = get_session("201712672", "password")
+# subject_list = get_subject_information()
+# get_subject_details_information(subject_list)
