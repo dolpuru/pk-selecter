@@ -15,5 +15,7 @@ def index():
         return {"error_msg" : "올바른 ID혹은 PW가 아닙니다."}
 
     elif return_value == True:
+        unoragnized_data = selecter.get_subject_information(return_session)
+        json_data = json_handler.oragnized(unoragnized_data)
 
-        login_checker.login_check(pks_user_id, pks_user_pw) # T/F?
+    return json_data
