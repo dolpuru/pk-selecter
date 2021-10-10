@@ -2,17 +2,19 @@
 기본 view를 return
 """
 from flask import Blueprint
-from flask import app
+from flask import app, render_template
 
-bp = Blueprint('views_bp', __name__)
+views_bp = Blueprint('views_bp', __name__)
 
 def views_deco(func):
-
-    def inner(*args, **kwargs):
-        @bp.route(location)
-        func(*args, **kwargs)
+    
         
-    return inner
+    return func
+
+@views_bp.route("/main")
+@views_deco
+def index():
+    return render_template("index.html")
 
 
 # from . import views
