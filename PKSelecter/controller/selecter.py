@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import requests
 import urllib3
+import json
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -219,4 +220,5 @@ get_session("201712672", "rlflsdPrh12#")
 subject_list = get_subject_information()
 
 return_json = get_subject_details_information(subject_list)
-print(return_json)
+z = json.dumps(return_json, indent=2, ensure_ascii=False)
+print(z)
