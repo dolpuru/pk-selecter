@@ -13,7 +13,6 @@ import requests
 #  => 통합.
 
 
-
 # lms_login_check
 def login_check_and_get_session(lms_id, lms_pw):
     # 따로 뺄까 했지만 통합.
@@ -25,19 +24,15 @@ def login_check_and_get_session(lms_id, lms_pw):
 
         session = requests.Session()
 
-        session_url  = "https://lms.pknu.ac.kr/ilos/lo/login.acl" # 세션을 얻을 url
+        session_url = "https://lms.pknu.ac.kr/ilos/lo/login.acl"  # 세션을 얻을 url
 
-        data = {
-            "usr_id" : lms_id, # LMS 아이디
-            "usr_pwd" : lms_pw # LMS 비밀번호
-        }
+        data = {"usr_id": lms_id, "usr_pwd": lms_pw}  # LMS 아이디  # LMS 비밀번호
 
-        request = session.post(session_url ,data = data, verify=False)
+        request = session.post(session_url, data=data, verify=False)
         confirm_login = BeautifulSoup(request.text, "html.parser")
 
-
         if "로그인 정보가 일치하지 않습니다." in confirm_login.text:
-            session.close() #세션 닫기
+            session.close()  # 세션 닫기
             return False, "no session"
-        else:    
+        else:
             return True, session

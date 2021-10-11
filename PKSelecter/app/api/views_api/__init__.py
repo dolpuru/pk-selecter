@@ -7,7 +7,6 @@ from flask import app, render_template
 views_bp = Blueprint('views_bp', __name__)
 
 def views_deco(func):
-    
         
     return func
 
