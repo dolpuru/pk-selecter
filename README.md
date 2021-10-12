@@ -6,7 +6,7 @@ https://doongu.gitbook.io/pk_select/
 다른 개발자가 봤을 때 알아보기 쉽고, 내가 다음에 봤을 때 알아보기 쉬운 코드를 만들자.
 패턴은 내가 스스로 만들자
 
-<p align="center"><img src="./gif_for_read-me/lms_problem.gif" width="300" height="600"/></p>
+<p align="center"><img src="./gif_for_read-me/lms_problem.gif" width="600" height="294"/></p>
 
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=135&section=header&text=&fontSize=90&fontAlignY=30&)
 
