@@ -1,13 +1,9 @@
-from flask import render_template, app
-from app.api.views_api import views_bp
+from flask import render_template
 
 
-def views_deco(func):
-
-    return func
-
-
-@views_bp.route("/")
-@views_deco
-def index():
-    return render_template("index.html")
+# circular import 방지를 위해 deco함수를 만들었다
+def views_router(views_bp):
+    @views_bp.route("/")
+    def main_view_api():
+        print("views api inner")
+        return render_template("index.html")

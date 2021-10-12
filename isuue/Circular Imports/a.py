@@ -1,7 +1,7 @@
 from flask import Blueprint
+from b import deco
+
 
 sample_api = Blueprint("sample_api", __name__)
-
-
-print("a")
-import b  # 얘를 제외하고
+deco(sample_api)
+print("sample_api")

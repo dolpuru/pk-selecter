@@ -1,23 +1,9 @@
 """
-Sample API Module Package
+로그인 확인 및 LMS데이터를 return
 """
-from flask import Blueprint, render_template, request
+from flask import Blueprint
+from .login_api import login_router
 
 
 controller_bp = Blueprint("controller_bp", __name__)
-
-
-def views_deco(func):
-
-    return func
-
-
-@controller_bp.route("/", methods=["POST"])
-@views_deco
-def index():
-    pks_user_id = request.form["pk_user_id"]
-    pks_user_pw = request.form["pk_user_pw"]
-    # return_value, return_session = login_checker.login_check_and_get_session(
-    #     pks_user_id, pks_user_pw
-    # )
-    return render_template("index_2.html", id=pks_user_id, pw=pks_user_pw)
+login_router(controller_bp)

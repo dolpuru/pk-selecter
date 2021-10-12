@@ -2,9 +2,8 @@
 기본 view를 return
 """
 from flask import Blueprint
-from flask import app, render_template
+from .views import views_router
+
 
 views_bp = Blueprint("views_bp", __name__)
-
-
-from . import views
+views_router(views_bp)
