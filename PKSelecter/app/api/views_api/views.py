@@ -1,13 +1,13 @@
-# from flask import render_template, app
-# from app.api.views_api import views_deco
+from flask import render_template, app
+from app.api.views_api import views_bp
 
-# # @views_bp.route('/main')
 
-# @views_deco
-# def index():
-#     return render_template("index.html")
+def views_deco(func):
 
-# @views_deco
-# @app.route('/main')
-# def index():
-#     return render_template("index.html")
+    return func
+
+
+@views_bp.route("/")
+@views_deco
+def index():
+    return render_template("index.html")
