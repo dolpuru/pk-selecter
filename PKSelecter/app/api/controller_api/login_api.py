@@ -3,17 +3,21 @@ import flask
 from controller import login_checker, selecter, json_handler
 from controller_api import controller_bp
 from flask import request
+
 """
 login_checker에 해당 값을 보냄
 """
 
-@controller_bp.route('/login', methods=["POST"])
+
+@controller_bp.route("/login", methods=["POST"])
 def index():
-    pks_user_id = request.form['pks_user_id']
-    pks_user_pw = request.form['pks_user_pw']
-    return_value, return_session = login_checker.login_check_and_get_session(pks_user_id, pks_user_pw) 
+    pks_user_id = request.form["pks_user_id"]
+    pks_user_pw = request.form["pks_user_pw"]
+    return_value, return_session = login_checker.login_check_and_get_session(
+        pks_user_id, pks_user_pw
+    )
     if return_value == False:
-        return {"error_msg" : "올바른 ID혹은 PW가 아닙니다."}
+        return {"error_msg": "올바른 ID혹은 PW가 아닙니다."}
 
     elif return_value == True:
         unoragnized_data = selecter.get_subject_information(return_session)
