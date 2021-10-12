@@ -3,4 +3,4 @@ from app import create_app
 
 
 application = create_app()
-application.run( port = 80)
+application.run(port=80)

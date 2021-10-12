@@ -215,8 +215,8 @@ def get_subject_details_information(subject_list):
     return return_dic
 
 
-get_session("201712672", "rlflsdPrh12#")
-subject_list = get_subject_information()
+# get_session("201712672", "rlflsdPrh12#")
+# subject_list = get_subject_information()
 
-return_json = get_subject_details_information(subject_list)
-print(return_json)
+# return_json = get_subject_details_information(subject_list)
+# print(return_json)
