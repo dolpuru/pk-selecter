@@ -1,6 +1,4 @@
-https://doongu.gitbook.io/pk_select/
 
-<p align="center"><img src="./gif_for_read-me/lms_problem.gif" width="600" height="294"/></p>
 
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=135&section=header&text=&fontSize=90&fontAlignY=30&)
 
@@ -16,7 +14,8 @@ https://doongu.gitbook.io/pk_select/
      PKSelct가 수업 관련 정보 모아서 보여줄게요. 
 </h6>
 
-위에 처럼 움짤넣기
+위에 처럼 움짤넣기 깃북도 추가하기 
+https://doongu.gitbook.io/pk_select/
 
 
 
