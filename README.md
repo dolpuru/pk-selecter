@@ -33,25 +33,6 @@ https://doongu.gitbook.io/pk_select/
 </h6>
 <br></br>
 
-<h2> Scheduling tool : Notion </h2>
-
-<p align = "center"><img src="https://github.com/doongu/dds_with_python/blob/main/notion_icon.png" width="60" height="50"></p>
-
- <p align = "center"><a href="https://www.notion.so/development_department_study_with_python-dds-fb5920dcce5b4eca95d625a256dac1db"><img src="http://img.shields.io/badge/Study_log-655ced?style=for-the-badge&color=lightgrey" style="height : auto; margin-left : 10px; margin-right : 10px;"/></a> </p>
- <p align = "center"><a href="https://wonderful-eagle-efe.notion.site/Flask-c1457e2cd6c2453ebe97e61e804ecc46"><img src="http://img.shields.io/badge/Flask_Study-655ced?style=for-the-badge&color=orange" style="height : auto; margin-left : 10px; margin-right : 10px;"/></a> </p>
-  <p align = "center"><a href="https://wonderful-eagle-efe.notion.site/Algstudy-91a49d25378941d09fd47208864f738f"><img src="http://img.shields.io/badge/Alg_Study-655ced?style=for-the-badge&color=informational" style="height : auto; margin-left : 10px; margin-right : 10px;"/></a> </p>
-
-<h6><p align = "center">  Click the button to go to the link.  </p></h6>
-
-<br></br>
-
-
-## How to start studying with us?
-
-- [x] please send mail to must1080@naver.com
-
-<br></br>
-
 
 <h2> Team Information <a href="https://github.com/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse"></a></h2>
 
