@@ -1,6 +1,6 @@
 # 사용자가 main_page.py에서 로그인하면, login_Check랑 이어져서 , login_Check에서 주는 값을 그대로 return해야함
 from flask import request, render_template
-from controller import login_checker, selecter
+from PKSelecter.controller import login_checker, selecter
 
 """
 login_checker에 해당 값을 보냄

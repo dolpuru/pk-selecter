@@ -28,16 +28,19 @@ class Config:
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
+    ENV = "=====TEST Mode====="
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
     TESTING = False
+    ENV = "=====Development Mode====="
 
 
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
+    ENV = "=====Production Mode====="
 
     # @staticmethod
     # def init_app(app):
@@ -73,7 +76,7 @@ config_dict = {
     "default": DevelopmentConfig,
 }
 
-config = config_dict["default"]
+config = config_dict["testing"]
 
 
 if __name__ == "__main__":
