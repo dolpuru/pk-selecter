@@ -5,5 +5,6 @@ from flask import render_template
 def views_router(views_bp):
     @views_bp.route("/")
     def main_view_api():
+
         print("views api inner")
         return render_template("index.html")
