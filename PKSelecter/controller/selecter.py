@@ -5,11 +5,9 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-session = requests.Session()
-
 
 def get_session(lms_id, lms_pw):
-    global session  # 세션 열기
+    session = requests.Session()
 
     session_url = "https://lms.pknu.ac.kr/ilos/lo/login.acl"  # 세션을 얻을 url
 
@@ -23,33 +21,34 @@ def get_session(lms_id, lms_pw):
         return False
 
     else:
-        return True
+        return session
 
 
-def Sub_subject_craw_module():
-    global session
+def Sub_subject_craw_module(session):
+
     subject_craw_url = (
         "https://lms.pknu.ac.kr/ilos/main/main_form.acl"  # 학수번호와 과목 명을 크롤링함
     )
 
     request = session.post(subject_craw_url, verify=False)
     sub_num_soup = BeautifulSoup(request.text, "html.parser")  # main에 요청보내서 학수번호 알아내기
-    temp_subject_list = sub_num_soup.findAll("em", {"sub", "sub_open"})
+    subject_list = sub_num_soup.findAll("em", {"sub", "sub_open"})
 
     return_subject_list = []
-    for index in range(len(temp_subject_list)):
+    for index in range(len(subject_list)):
         return_subject_list.append(
             [
-                "".join(temp_subject_list[index].text.replace(" ", "").split()),
-                temp_subject_list[index]["kj"],
+                "".join(subject_list[index].text.replace(" ", "").split()),
+                subject_list[index]["kj"],
             ]
         )
 
     return return_subject_list
 
 
-def Sub_detail_sub_info(KJKEY):
-    global session
+def Sub_detail_sub_info(KJKEY, session):
+    # global session
+
     craw_url = "https://lms.pknu.ac.kr/ilos/st/course/eclass_room2.acl"
     sub_main = "https://lms.pknu.ac.kr/ilos/st/course/submain_form.acl"
     data = {
@@ -65,26 +64,29 @@ def Sub_detail_sub_info(KJKEY):
     res = session.get(sub_main, verify=False)  # 해당 과목의 세션을 얻었을 때 url을 가져와야함
 
     soup = BeautifulSoup(res.text, "html.parser")
-    temp_right = soup.find("div", {"class", "submain-rightarea"})  # 오른쪽 배너를 부르고
-    temp_detail_sub_info = temp_right.findAll("a", {"class", "site-link"})  # 부른 것에서 추출
-    temp_list = []
-    temp_list2 = []
+    right_banner = soup.find("div", {"class", "submain-rightarea"})  # 오른쪽 배너를 부르고
+
+    detail_sub_info = right_banner.findAll("a", {"class", "site-link"})  # 부른 것에서 추출
+
+    subject_url_list = []
+    exam_url_list = []
     assignment_url = "https://lms.pknu.ac.kr"  # + "/ilos/st/course/report_view_form.acl?RT_SEQ=4057037" 과제는 그냥 get 때리면 됨, SEQ뒤에 과제 일렬번호 써줘야함
 
     # 오른쪽 부분을 이용해서 "과제와 시험기간이 현재 범위 인것만 긁는다."
-    for i in range(len(temp_detail_sub_info)):
-        if "[과제]" in temp_detail_sub_info[i].text.strip():
+    for i in range(len(detail_sub_info)):
+        if "[과제]" in detail_sub_info[i].text.strip():
+            subject_url_list.append(assignment_url + detail_sub_info[i]["href"])
 
-            temp_list.append(assignment_url + temp_detail_sub_info[i]["href"])
-        if "[시험]" in temp_detail_sub_info[i].text.strip():
-            temp_list2.append(assignment_url + temp_detail_sub_info[i]["href"])
-    return temp_list, temp_list2
+        if "[시험]" in detail_sub_info[i].text.strip():
+            exam_url_list.append(assignment_url + detail_sub_info[i]["href"])
+
+    return subject_url_list, exam_url_list
 
 
-def Sub_class_info(ky):
-    global session
+def Sub_class_info(ky, session):
 
     online_list = "https://lms.pknu.ac.kr/ilos/st/course/online_list.acl"  # 수업
+
     data = {"ud": "", "ky": ky, "WEEK_NO": "", "encoding": "utf-8"}
     res = session.post(online_list, verify=False)
 
@@ -93,34 +95,37 @@ def Sub_class_info(ky):
     return temp_temp
 
 
-def Sub_subject(craw_url):
-    global session
+def Sub_subject(craw_url, session):
+
     res = session.post(craw_url, verify=False)
     soup = BeautifulSoup(res.text, "html.parser")
+
     temp_temp = soup.find("table", {"class": "bbsview"})
     temp_temp2 = soup.find("table", {"class": "bbswrite"})
+
     return temp_temp, temp_temp2
 
 
-def Sub_exam(craw_url):
-    global session
+def Sub_exam(craw_url, session):
+
     res = session.post(craw_url, verify=False)
     soup = BeautifulSoup(res.text, "html.parser")
-    h = soup.find("div", {"id": "contents"})
-    return h
+
+    contents = soup.find("div", {"id": "contents"})
+    return contents
 
 
 def get_subject_information(lms_id, lms_pw):
-    global session
+
     """
     세션 얻기
     """
-    get_session(lms_id, lms_pw)
+    session = get_session(lms_id, lms_pw)
 
     """
     학수번호와 과목명을 크롤링
     """
-    subject_list = Sub_subject_craw_module()
+    subject_list = Sub_subject_craw_module(session)
 
     """
     미완료 항목 크롤링
@@ -138,7 +143,7 @@ def get_subject_information(lms_id, lms_pw):
 
         # 수업 처리 부분
 
-        temp_temp = Sub_class_info(subject_list[index][1])
+        temp_temp = Sub_class_info(subject_list[index][1], session)
 
         for i in range(len(temp_temp)):
             temp_list_find = temp_temp[i].text.split()
@@ -161,11 +166,11 @@ def get_subject_information(lms_id, lms_pw):
 
         # 과제 처리 부분
 
-        temp_list, temp_list2 = Sub_detail_sub_info(subject_list[index][1])
+        temp_list, temp_list2 = Sub_detail_sub_info(subject_list[index][1], session)
 
         for i in range(len(temp_list)):
 
-            temp_temp, temp_temp2 = Sub_subject(temp_list[i])
+            temp_temp, temp_temp2 = Sub_subject(temp_list[i], session)
 
             sub = temp_temp.text.split()
 
@@ -183,13 +188,12 @@ def get_subject_information(lms_id, lms_pw):
 
         # 시험 처리 부분
         for i in range(len(temp_list2)):
-            h = Sub_exam(temp_list2[i])
+            h = Sub_exam(temp_list2[i], session)
 
             if "응시정보" in h.text:
                 continue
             else:
                 h = h.findAll("td")
-
                 li = []
                 for j in range(len(h)):
                     li.append(h[j].text)
