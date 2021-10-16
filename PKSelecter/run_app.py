@@ -20,10 +20,22 @@ application = create_app(config)
 # @application.click.argument("name")
 # def test_(name):
 #     print(name)
+@application.cli.command("dev_mode")
+@click.argument("name")
+def develope(name):
+    """develope_mode"""
+    print("mode: dev_mode, {}".format(name))
+
+
+@application.cli.command("production_mode")
+@click.argument("name")
+def production(name):
+    """production_mode"""
+    print("mode: production_mode, {}".format(name))
 
 
 @application.cli.command("test_mode")
 @click.argument("name")
-def create(name):
-    """Creates a user"""
-    print("Create user: {}".format(name))
+def test(name):
+    """test_mode"""
+    print("mode: test_mode, {}".format(name))
