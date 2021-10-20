@@ -2,20 +2,11 @@
 from bs4 import BeautifulSoup
 import requests
 
-# my_server_login_check
-# def login_check(pks_user_id, pks_user_pw):
-#     if pks_user_id.isdigit() != True and len(pks_user_id) != 9:
-#         return False
-#     elif len(pks_user_pw) != 6 and not (10 <= len(pks_user_pw) <= 16):
-#         return False
-#     else:
-#         return True
-#  => 통합.
-
-
-# lms_login_check
+'''
+lms_login_check
+'''
 def login_check_and_get_session(lms_id, lms_pw):
-    # 따로 뺄까 했지만 통합.
+    
     if lms_id.isdigit() != True and len(lms_id) != 9:
         return False
     elif len(lms_pw) != 6 and not (10 <= len(lms_pw) <= 16):
