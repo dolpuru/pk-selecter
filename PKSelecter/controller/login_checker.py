@@ -7,6 +7,8 @@ lms_login_check
 '''
 def login_check_and_get_session(lms_id, lms_pw):
     
+    fail_login_value = "로그인 정보가 일치하지 않습니다."
+
     if lms_id.isdigit() != True and len(lms_id) != 9:
         return False
     elif len(lms_pw) != 6 and not (10 <= len(lms_pw) <= 16):
@@ -22,8 +24,8 @@ def login_check_and_get_session(lms_id, lms_pw):
         request = session.post(session_url, data=data, verify=False)
         confirm_login = BeautifulSoup(request.text, "html.parser")
 
-        if "로그인 정보가 일치하지 않습니다." in confirm_login.text:
-            session.close()  # 세션 닫기
+        if fail_login_value in confirm_login.text:
+            session.close()
             return False, "no session"
         else:
             return True, session
