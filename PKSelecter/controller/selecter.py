@@ -16,12 +16,11 @@ def get_session(lms_id, lms_pw):
     request = session.post(session_url, data=data, verify=False)
     confirm_login_soup = BeautifulSoup(request.text, "html.parser")
 
-    if "로그인 정보가 일치하지 않습니다." in confirm_login_soup.text:
-        session.close()  # 세션 닫기
-        return False
-
-    else:
-        return session
+    # login_checker 에서 시행했음.
+    # if "로그인 정보가 일치하지 않습니다." in confirm_login_soup.text:
+    #     session.close()  # 세션 닫기
+    #     return False
+    return session
 
 
 def Sub_subject_craw_module(session):
