@@ -1,9 +1,9 @@
 # from config import config, APP_NAME
 import click
-from PKSelecter.app import create_app
+from app import create_app
 
 # from flask_cli import FlaskCLI
-from PKSelecter.config import config
+from config import config
 
 
 # app = Flask(__name__)
