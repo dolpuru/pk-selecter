@@ -2,11 +2,13 @@
 from bs4 import BeautifulSoup
 import requests
 
-'''
+"""
 lms_login_check
-'''
+"""
+
+
 def login_check_and_get_session(lms_id, lms_pw):
-    
+
     fail_login_value = "로그인 정보가 일치하지 않습니다."
 
     if lms_id.isdigit() != True and len(lms_id) != 9:
@@ -26,13 +28,7 @@ def login_check_and_get_session(lms_id, lms_pw):
 
         if fail_login_value in confirm_login.text:
             session.close()
-<<<<<<< HEAD
-            return {"value" : False, "session" : "no session"}
+
+            return {"value": False, "session": "no session"}
         else:
-            return {"value" : True, "session" : session}
-=======
-            return False
-        else:
-            session.close()
-            return True
->>>>>>> b66687743e0ab8143bcd3b9a6295467ca5215d7d
+            return {"value": True, "session": session}
