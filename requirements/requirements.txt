@@ -1,5 +1,5 @@
 Flask==2.0.1
-Faker==8.4.1
+Faker==8.14.0
 beautifulsoup4==4.9.3
 requests==2.23.0
 click==7.1.2
