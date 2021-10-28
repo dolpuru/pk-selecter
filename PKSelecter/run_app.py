@@ -1,25 +1,11 @@
-# from config import config, APP_NAME
 import click
-from app import create_app
 
-# from flask_cli import FlaskCLI
+from app import create_app
 from config import config
 
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def helloWorld():
-#     return 'Hello, World!'
 application = create_app(config)
-# application.run(port=80)
 
 
-# @application.click.command()
-# @application.click.option("--test", help="test of args")
-# @application.click.argument("name")
-# def test_(name):
-#     print(name)
 @application.cli.command("dev_mode")
 @click.argument("name")
 def develope(name):
