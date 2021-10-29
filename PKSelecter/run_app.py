@@ -28,9 +28,17 @@ def test(test_names_tuple):
     """test_mode"""
     test_dir = "test"
 
-    for index in range(len(test_names_tuple)):
-        print("mode: test_mode, test_name :  {}".format(test_names_tuple))
+    try:
+        if test_names_tuple:
+            for index in range(len(test_names_tuple)):
+                print("mode: test_mode, test_name :  {}".format(test_names_tuple))
+                name_to_test_suite = unittest.TestLoader().discover(
+                    test_dir, test_names_tuple[index]
+                )
+                print(type(name_to_test_suite))
+                unittest.TextTestRunner(verbosity=1).run(name_to_test_suite)
+        else:
+            raise ValueError
 
-        name_to_test_suite = unittest.TestLoader().discover(test_dir, test_names_tuple[index])
-        print(type(name_to_test_suite))
-        unittest.TextTestRunner(verbosity=1).run(name_to_test_suite)
+    except ValueError:
+        print("Error, you must be 'flask test_mode a.py b.py ...' ")
