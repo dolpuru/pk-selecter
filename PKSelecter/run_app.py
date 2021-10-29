@@ -1,6 +1,7 @@
 import click
 import unittest
-from tests.mytest import MyTest
+
+# from tests import mytest
 from app import create_app
 from config import config
 
@@ -22,9 +23,14 @@ def production(name):
 
 
 @application.cli.command("test_mode")
-@click.argument("name",  nargs=-1) #nargs -1 로 해야 문자열로 받음 아니면 문자로 받음
-def test(name):
+@click.argument("test_names_tuple", nargs=-1)  # nargs -1 로 해야 문자열로 받음 아니면 문자로 받음
+def test(test_names_tuple):
     """test_mode"""
-    print("mode: test_mode, test_name :  {}".format(name))
-    ta = unittest.TestLoader().loadTestsFromNames('tests/' + name)
-    unittest.TextTestRunner(verbosity=1).run(ta)
+    test_dir = "test"
+
+    for index in range(len(test_names_tuple)):
+        print("mode: test_mode, test_name :  {}".format(test_names_tuple))
+
+        name_to_test_suite = unittest.TestLoader().discover(test_dir, test_names_tuple[index])
+        print(type(name_to_test_suite))
+        unittest.TextTestRunner(verbosity=1).run(name_to_test_suite)
