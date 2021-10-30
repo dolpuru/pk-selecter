@@ -47,7 +47,16 @@ function loginmove() {
   document.body.style.lineHeight = "100px";
 }
 
-fetch("http:/127.0.0.1:5000/login").then((response => response.json()))
+fetch("/login", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    pk_user_id : "201712672",
+    pk_user_pw : "rlflsdPrh12#",
+  }),
+}).then((response => response.json()))
 .then(json => { 
      if(json['status'] == 200){
   class Deque {
