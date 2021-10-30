@@ -7,4 +7,4 @@ def views_router(views_bp):
     def main_view_api():
 
         print("views api inner")
-        return render_template("index.html")
+        return render_template("pkselect.html")

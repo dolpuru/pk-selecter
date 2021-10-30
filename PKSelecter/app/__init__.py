@@ -17,7 +17,7 @@ from .api.controller_api import controller_bp
 
 def create_app(config):
 
-    app = Flask(__name__, static_folder="./templates/", template_folder="./templates/")
+    app = Flask(__name__, static_folder="./static/", template_folder="./static/")
     app.config.from_object(config)
     print(app.config["ENV"])
     app.register_blueprint(views_bp, url_prefix="/")
