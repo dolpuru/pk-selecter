@@ -27,6 +27,6 @@ def login_check_and_get_session(lms_id, lms_pw):
         if fail_login_value in confirm_login.text:
             session.close()
 
-            return {"value": False, "session": "no session"}
+            return False
         else:
-            return {"value": True, "session": session}
+            return True

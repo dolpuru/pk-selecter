@@ -47,7 +47,7 @@ function loginmove() {
   document.body.style.lineHeight = "100px";
 }
 
-fetch("http://3.36.76.134/").then((response => response.json()))
+fetch("http:/127.0.0.1:5000/login").then((response => response.json()))
 .then(json => { 
      if(json['status'] == 200){
   class Deque {

@@ -203,6 +203,7 @@ def get_subject_information(lms_id, lms_pw):
                 calender_form["date_deadline"] = ", ".join(li[4:6])
                 return_dic["lms_data"].append(dict(calender_form))
 
+    session.close()
     return return_dic
 
 
