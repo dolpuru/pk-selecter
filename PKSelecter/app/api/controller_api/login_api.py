@@ -23,5 +23,5 @@ def login_router(login_bp):
 
         elif login_check_value == True:
             unoragnized_data = selecter.get_subject_information(pk_user_id, pk_user_pw)
-
+        print(unoragnized_data)
         return unoragnized_data

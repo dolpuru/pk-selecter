@@ -2,36 +2,50 @@ html {
   width: 100%;
   height: 100%;
 }
-@keyframes loading{
-  from {width: 0%;}
-  to {width: 100%;}
+
+@keyframes loading {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
-* {margin: 0; padding: 0;} 
+* {
+  margin: 0;
+  padding: 0;
+}
 
 @font-face {
   font-family: "logofont";
   src: url("logofont.ttf") format('truetype');
 }
+
 @font-face {
   font-family: "baiscfont";
   src: url("basicfont.ttf") format('truetype');
 }
+
 body {
   background: #ebebeb;
   color: rgba(0, 0, 0, 0.6);
   font-family: "baiscfont";
   font-size: 2rem;
-  line-height: 1.6em; 
+  line-height: 1.6em;
   height: 100%;
 }
-#mainpage{
+
+#mainpage {
   height: 100%;
   width: 100%;
 }
-#total{
+
+#total {
   height: 100%;
 }
+
 .form {
   display: flex;
   justify-content: center;
@@ -49,6 +63,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .form-toggle {
   z-index: 10;
   position: absolute;
@@ -64,7 +79,9 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.form-toggle:before, .form-toggle:after {
+
+.form-toggle:before,
+.form-toggle:after {
   content: "";
   display: block;
   position: absolute;
@@ -75,25 +92,31 @@ body {
   background: #14274E;
   transform: translate(-50%, -50%);
 }
+
 .form-toggle:before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
+
 .form-toggle:after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
+
 .form-toggle.visible {
   transform: translate(100%, -100%) scale(0.4);
   opacity: 1;
 }
+
 .form-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 0 10px;
 }
+
 .two .form-group {
   margin: 0 0 15%;
 }
+
 .form-group:last-child {
   margin: 0;
 }
@@ -108,9 +131,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.2em;
 }
+
 .two .form-group label {
   color: #FFFFFF;
 }
+
 .form-group input {
   outline: none;
   display: block;
@@ -127,6 +152,7 @@ body {
   font-weight: 500;
   line-height: inherit;
 }
+
 #introduction {
   display: block;
   margin-top: 3%;
@@ -144,11 +170,13 @@ body {
   font-family: inherit;
   font-size: 28px;
   line-height: inherit;
-  word-break:break-all;
+  word-break: break-all;
 }
-a{
+
+a {
   cursor: pointer;
 }
+
 .form-group button {
   outline: none;
   background: #14274E;
@@ -157,7 +185,7 @@ a{
   border: 0;
   border-radius: 6px;
   padding: 12px 20px;
-  padding-top:14px;
+  padding-top: 14px;
   color: #FFFFFF;
   font-family: inherit;
   font-size: inherit;
@@ -172,18 +200,21 @@ a{
   padding: 55px calc(5% + 60px) 60px 60px;
   box-sizing: border-box;
 }
+
 .form-panel.one:before {
   display: block;
   opacity: 0;
   visibility: hidden;
   transition: 0.3s ease;
 }
+
 .form-panel.one.hidden:before {
   content: "";
   display: block;
   opacity: 1;
   visibility: visible;
 }
+
 .form-panel.two {
   z-index: 5;
   position: absolute;
@@ -200,7 +231,9 @@ a{
   flex-direction: column;
   justify-content: center;
 }
-.form-panel.two:before, .form-panel.two:after {
+
+.form-panel.two:before,
+.form-panel.two:after {
   content: "";
   display: block;
   position: absolute;
@@ -210,16 +243,21 @@ a{
   width: 2px;
   transition: 0.3s ease;
 }
+
 .form-panel.two:after {
   left: 3%;
 }
+
 .form-panel.two:hover {
   left: 93%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.form-panel.two:hover:before, .form-panel.two:hover:after {
+
+.form-panel.two:hover:before,
+.form-panel.two:hover:after {
   opacity: 0;
 }
+
 .form-panel.two.active {
   padding: 10%;
   padding-right: 15%;
@@ -229,12 +267,16 @@ a{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   cursor: default;
 }
-.form-panel.two.active:before, .form-panel.two.active:after {
+
+.form-panel.two.active:before,
+.form-panel.two.active:after {
   opacity: 0;
 }
+
 .form-header {
   margin: 0 0 40px;
 }
+
 .form-header h1 {
   cursor: default;
   text-align: center;
@@ -248,11 +290,13 @@ a{
   font-family: "logofont";
   letter-spacing: 7px;
 }
+
 .one .form-group label {
   font-size: 30px;
   margin-right: 20px;
 }
-#over { 
+
+#over {
   display: none;
   font-size: 40px;
   font-family: "logofont";
@@ -277,59 +321,74 @@ a{
 
 
 
-
-
 #secondpage {
   font-size: 14px;
   display: none;
-} 
+  overflow-x: hidden;
+  flex-direction: column;
+}
+
 table {
-  word-break:break-all;
+  word-break: break-all;
   border-style: none;
   margin-bottom: 15px;
-  table-layout :fixed;
+  table-layout: fixed;
   width: 80%;
   margin: 0 auto;
-  border-collapse : collapse;
+  margin-top: 5%;
+  border-collapse: collapse;
 }
-.tables{
+
+.tables {
   width: 100%;
   padding-top: 5%;
   padding-bottom: 5%;
-  position: absolute; 
-  left: 50%; 
+  position: relative;
+  left: 50%;
   transform: translateX(-50%);
+  order:2;
 }
-th, td {
+
+th,
+td {
   padding: 6px;
   text-align: center;
-  vertical-align : middle;
+  vertical-align: middle;
   border-style: none;
   font-size: 2rem;
-  border-collapse : collapse;
-}
-#tableL th{
-  background-color:#3d72b3;
-}
-#tableHW th{
-  background-color:#59995f;
-}
-#tableT th{
-  background-color:#c95a49;
+  border-collapse: collapse;
 }
 
-tr:nth-child(even){
-  background-color:#ffffff;
-}
-tr:nth-child(odd){
-  background-color:#fafafa;
+#tableL th {
+  background-color: #3d72b3;
 }
 
+#tableHW th {
+  background-color: #59995f;
+}
+
+#tableT th {
+  background-color: #c95a49;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+#table_top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 
 
 
-#server_error{
-  display:flex;
+
+#server_error {
+  display: flex;
   width: 600px;
   height: 400px;
   box-shadow: 10px 10px 15px rgb(0 0 0 / 20%);
@@ -346,28 +405,365 @@ tr:nth-child(odd){
   margin-top: 0%;
   left: 0;
   right: 0;
-} 
-#server_error > div{
+}
+
+#server_error>div {
   margin-bottom: 30px;
 }
-#mainpagebutton{
-outline: none;
-background: #14274E;
-width: 200px;
-height: 80px;
-font-size: 30px;
-border: 0;
-border-radius: 6px;
-padding: 12px 20px;
-padding-top:14px;
-color: #FFFFFF;
-cursor: pointer;
+
+#mainpagebutton {
+  outline: none;
+  background: #14274E;
+  width: 200px;
+  height: 80px;
+  font-size: 30px;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 20px;
+  padding-top: 14px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  float: none;
 }
 
 
 
 
-/* pc로 제작시 */
+
+
+/*//////////////////////////////////*/
+/*모바일 버전 캘린더 코드*/
+#content {
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+#content:first-child {
+  margin-top: 15px;
+}
+
+.my-calendar {
+  width: 76%;
+  height: 1200px;
+  margin: 3%;
+  padding: 20px 20px 10px;
+  text-align: center;
+  font-weight: 800;
+  cursor: default;
+  position: relative;
+  border-radius: 15px;
+  order:1;
+  left: 7%;
+  background-color: white;
+}
+
+.my-calendar #clicked-date {
+  border-radius: 25px;
+  margin-top: 105%;
+  width: 91.5%;
+  height: 27%;
+  padding: 10px 15px 26px;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+}
+
+.my-calendar .calendar-box {
+  width: 100%;
+}
+
+#clicked-date .cal-day {
+  font-size: 3rem;
+}
+
+#clicked-date .cal-date {
+  font-size: 130px;
+}
+
+#Context-box {
+  width: 100%;
+  height: 80%;
+  font-size: 2.5rem;
+}
+
+.ctr-box {
+  padding: 0 16px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+.ctr-box .btn-cal {
+  position: relative;
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.ctr-box .btn-cal:after {
+  content: '<';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  font-weight: bold;
+  font-size: 4rem;
+}
+
+.ctr-box .btn-cal.next {
+  float: right;
+}
+
+.ctr-box .btn-cal.next:after {
+  content: '>';
+}
+
+.cal-table {
+  width: 100%;
+}
+
+.cal-table th {
+  width: 14.2857%;
+  padding-bottom: 5px;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.cal-table td {
+  padding: 3px 0;
+  height: 100px;
+  font-size: 3rem;
+  vertical-align: middle;
+}
+
+.cal-table td.day {
+  position: relative;
+  cursor: pointer;
+}
+
+.cal-table td.today {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: #fff;
+}
+
+.cal-table td.day-active {
+  background: #14274E;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.cal-table td.has-event:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: #FFC107;
+}
+
+#circle1 {
+  margin: auto;
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  background-color: #6699CC;
+}
+
+#circle2 {
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+/* ======== Calendar ======== */
+/*PC버전 캘린더 코드*/
+@media (hover: hover) {
+
+  #secondpage {
+    flex-direction:row;
+  }
+
+  #content {
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  #content:first-child {
+    margin-top: 15px;
+  }
+
+  .my-calendar {
+    width: 400px;
+    height: 640px;
+    margin: 30px;
+    padding: 20px 20px 10px;
+    text-align: center;
+    font-weight: 800;
+    cursor: default;
+    border-radius: 15px;
+    z-index: 3;
+    left: 14%;
+  }
+
+  .my-calendar #clicked-date {
+    border-radius: 25px;
+    margin-top: 415px;
+    float: left;
+    width: 400px;
+    height: 193px;
+    padding: 10px 0 20px;
+    background: rgba(0, 0, 0, 0.1);
+    position: fixed;
+  }
+
+  .my-calendar .calendar-box {
+    float: right;
+    width: 400px;
+    padding-left: 30px;
+  }
+
+  #clicked-date .cal-day {
+    font-size: 24px;
+  }
+
+  #clicked-date .cal-date {
+    font-size: 130px;
+  }
+
+  #Context-box {
+    width: 400px;
+    height: 160px;
+    font-size: 18px;
+  }
+
+  .ctr-box {
+    padding: 0 16px;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .ctr-box .btn-cal {
+    position: relative;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  .ctr-box .btn-cal:after {
+    content: '<';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .ctr-box .btn-cal.next {
+    float: right;
+  }
+
+  .ctr-box .btn-cal.next:after {
+    content: '>';
+  }
+
+  .cal-table {
+    width: 100%;
+  }
+
+  .cal-table th {
+    width: 14.2857%;
+    padding-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .cal-table td {
+    padding: 3px 0;
+    height: 48px;
+    font-size: 15px;
+    vertical-align: middle;
+  }
+
+  .cal-table td.day {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .cal-table td.today {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    color: #fff;
+  }
+
+  .cal-table td.day-active {
+    background: #14274E;
+    border-radius: 50%;
+    color: #fff;
+  }
+
+  .cal-table td.has-event:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: #FFC107;
+  }
+
+  #circle1 {
+    margin: auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #6699CC;
+  }
+
+  #circle2 {
+    margin: auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+
+
+
+
+
+/*  pc로 제작시 */
 @media (hover: hover) {
   body {
     font-size: 14px;
@@ -375,13 +771,16 @@ cursor: pointer;
     justify-content: center;
     align-items: center;
   }
-  #mainpage{
+
+  #mainpage {
     height: auto;
     width: auto;
   }
-  #total{
+
+  #total {
     height: auto;
   }
+
   .form-panel.one:before {
     position: absolute;
     top: 0;
@@ -391,38 +790,48 @@ cursor: pointer;
     width: 600px;
     height: 429.91px;
   }
+
   .form {
     width: 600px;
     height: 429.91px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
   }
+
   .form-toggle {
     top: 60px;
     right: 60px;
     width: 60px;
     height: 60px;
   }
-  .form-toggle:before, .form-toggle:after {
+
+  .form-toggle:before,
+  .form-toggle:after {
     width: 30px;
     height: 4px;
   }
+
   .two .form-group {
     margin: 0 0 20px;
   }
+
   .form-group input {
-  width: 450px;
-}
+    width: 450px;
+  }
+
   .form-group label {
     font-size: 15px;
   }
+
   #introduction {
     margin: 0 0 10px;
     padding: 12px 20px;
     font-size: 13px;
   }
+
   .form-group button {
     margin: 0;
   }
+
   .form-panel.two {
     left: 95%;
     background: #14274E;
@@ -433,52 +842,61 @@ cursor: pointer;
     cursor: pointer;
     display: inline;
   }
-  .form-panel.two:before, .form-panel.two:after {
+
+  .form-panel.two:before,
+  .form-panel.two:after {
     left: 1.5%;
   }
+
   .form-panel.two.active {
     padding: 30px 105px 60px 60px;
     left: 7%;
     width: 600px;
     height: 429.91px;
   }
+
   .form-header h1 {
     margin: 20px;
     font-size: 30px;
   }
+
   .one .form-group label {
     font-size: 12px;
     margin-bottom: 5px;
   }
+
   .form-group button {
     height: auto;
   }
+
   .form-group input {
     height: auto;
   }
-  #over { 
+
+  #over {
     font-size: 25px;
   }
 
-  .tables{
-    margin: 0;
-    display: inline;
-    margin: 0 auto;
+  .tables {
+    position:relative;
+    left:67%;
   }
-  th, td{
+
+  th,
+  td {
     font-size: 1rem;
   }
+
   table {
-    word-break:break-all;
+    word-break: break-all;
     border-style: none;
     margin-bottom: 15px;
-    table-layout :fixed;
+    table-layout: fixed;
     width: 550px;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
   }
 
   /* error alert */
-  #server_error{
+  #server_error {
     width: 300px;
     height: 200px;
     align-items: center;
@@ -486,10 +904,11 @@ cursor: pointer;
     margin: 0 auto;
     left: 0;
     right: 0;
-  } 
-  #mainpagebutton{
-  width: 100px;
-  height: 40px;
-  font-size: inherit;
+  }
+
+  #mainpagebutton {
+    width: 100px;
+    height: 40px;
+    font-size: inherit;
   }
 }
