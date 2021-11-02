@@ -1,6 +1,7 @@
 """
 Application Factory Module
 """
+from logging import DEBUG, debug
 from flask import Flask
 
 # from PKSelecter import config
@@ -17,9 +18,15 @@ from .api.controller_api import controller_bp
 
 def create_app(config):
 
-    app = Flask(__name__, static_folder="./static/", template_folder="./static/")
-    app.config.from_object(config)
-    print(app.config["ENV"])
+    app = Flask(
+        import_name=__name__, static_folder="./static/", template_folder="./static/"
+    )
+    # a = (DEBUG=true)
+    app.config.update(DEBUG=True, TESTING=False)
+    # config.init_app(app)
+
+    print("app.config in __init__.py", app.config["ENV"])  # 2
+
     app.register_blueprint(views_bp, url_prefix="/")
     app.register_blueprint(controller_bp, url_prefix="/")
     return app
