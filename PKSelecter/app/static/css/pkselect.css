@@ -625,6 +625,10 @@ background-color: #14274E;
     height: auto;
   }
 
+  .form-group button {
+    height: 50px;
+  }
+
   .form-panel.one:before {
     position: absolute;
     top: 0;
@@ -707,10 +711,6 @@ background-color: #14274E;
   .one .form-group label {
     font-size: 12px;
     margin-bottom: 5px;
-  }
-
-  .form-group button {
-    height: auto;
   }
 
   .form-group input {
