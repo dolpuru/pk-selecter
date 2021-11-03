@@ -19,9 +19,12 @@ def login_router(login_bp):
         )
 
         if login_check_value == False:
-            return {"error_msg": "올바른 ID혹은 PW가 아닙니다."}
+            print("error를 출력합니다.")
+            return {"status" : 400, "error_msg": "올바른 ID혹은 PW가 아닙니다."}
 
         elif login_check_value == True:
             unoragnized_data = selecter.get_subject_information(pk_user_id, pk_user_pw)
+        
+        
         print(unoragnized_data)
         return unoragnized_data

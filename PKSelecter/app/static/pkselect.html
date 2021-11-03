@@ -2,10 +2,10 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
+	<meta charset="utf-8" name="viewport" content="user-scalable=no">
 	<title>pkselect</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link rel='stylesheet' href={{ url_for('static', filename='css/pkselect.css' ) }}>
+	<link rel='stylesheet'  href={{ url_for('static', filename='css/pkselect.css') }} >
 	<script src={{ url_for('static', filename='js/pkselect.js' ) }}></script>
 </head>
 
@@ -18,7 +18,7 @@
 	<div id="mainpage">
 		<h1 id="over" data-text="PKSELECT" >PKSELECT</h1>
 		<div id="total">
-			<div class="form" >
+			<div class="form">
 				<div class="form-toggle"></div>
 				<div class="form-panel one">
 					<div class="form-header">
@@ -36,14 +36,14 @@
 							</div>
 							<div id="failed_login"></div>
 							<div class="form-group">
-								<button id="loginbutton"  onclick="loginmove()">Log In</button>
+								<button id="loginbutton" type="submit" onclick="loginmove()">Log In</button>
 							</div>
 
 					</div>
 				</div>
 				<div class="form-panel two">
 					<div class="form-content">
-						<form >
+						<form>
 							<div class="form-group">
 								<label for="username">PKSELECT 란?</label>
 								<label id="introduction">기존의 LMS서비스보다 편리하게 미완료된 강의 및 과제를 조회할 수 있도록 돕는 웹사이트</label>
@@ -68,14 +68,51 @@
 	</div>
 
 	<div id="secondpage">
-		<div class="tables">
-			<table id="tableL"><th id = "table_top">미완료 강의</th></table>
-			<table id="tableHW"><th id = "table_top">미제출 과제</th></table>
-			<table id="tableT"><th id = "table_top">미제출 시험</th></table>
+		<div class="my-calendar">
+			<div class="calendar-box">
+				<div class="ctr-box">
+					<button type="button" title="prev" class="btn-cal prev" style="color:#fff">
+					</button>
+					<span class="cal-month"></span>
+					<span class="cal-year"></span>
+					<button type="button" title="next" class="btn-cal next" style="color:#fff">
+					</button>
+				</div>
+				<table class="cal-table">
+					<thead>
+						<tr>
+							<th>S</th>
+							<th>M</th>
+							<th>T</th>
+							<th>W</th>
+							<th>T</th>
+							<th>F</th>
+							<th>S</th>
+						</tr>
+					</thead>
+					<tbody class="cal-body"></tbody>
+				</table>
+			</div>
+			<div id="clicked-date">
+				<div class="cal-day"></div>
+				<div class="cal-date"></div>
+				<div id="Context-box"></div>
+			</div>
 		</div>
 
-		<script src={{ url_for('static', filename='js/pkselect.js' ) }}></script>
+		<div class="tables">
+			<table id="tableL">
+				<th id="table_top">미완료 강의</th>
+			</table>
+			<table id="tableHW">
+				<th id="table_top">미제출 과제</th>
+			</table>
+			<table id="tableT">
+				<th id="table_top">미제출 시험</th>
+			</table>
+		</div>
+	</div>
 </body>
-
 <script src={{ url_for('static', filename='js/pkselect.js' ) }}></script>
+
 </html>

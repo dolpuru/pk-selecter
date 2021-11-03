@@ -26,7 +26,7 @@ def login_check_and_get_session(lms_id, lms_pw):
 
         if fail_login_value in confirm_login.text:
             session.close()
-
+            print("세션이 닫혔습니다.")
             return False
         else:
             return True

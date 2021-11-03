@@ -21,11 +21,11 @@ def develope(name):
     print(a.test_config)
     # print("Aaaaaaaaaa", config_dict["testing"])
     # print("bbbbbbbbbb", config_dict["testing"].test_config)
-    application.config.update(config_dict["testing"].test_config)
+    # application.config.update(config_dict["testing"].test_config)
     # application.debug = True
     # application.testing = False
 
-    application.run()
+    # application.run()
 
 
 @application.cli.command("production_mode")
