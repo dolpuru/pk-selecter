@@ -22,9 +22,10 @@ def login_check_and_get_session(lms_id, lms_pw):
         data = {"usr_id": lms_id, "usr_pwd": lms_pw}  # LMS 아이디  # LMS 비밀번호
 
         request = session.post(session_url, data=data, verify=False)
+
         confirm_login = BeautifulSoup(request.text, "html.parser")
 
-        if fail_login_value in confirm_login.text:
+        if fail_login_value in str(confirm_login):
             session.close()
             print("세션이 닫혔습니다.")
             return False
