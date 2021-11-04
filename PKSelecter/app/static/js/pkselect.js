@@ -25,7 +25,7 @@ function gitbookmove() {
 }
 
 function page1() {
-    location.href = 'http://127.0.0.1:5003';
+    window.location.reload();
 }
 
 
@@ -36,15 +36,15 @@ function loginmove() {
     document.body.style.lineHeight = "100px";
 
     fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                pk_user_id: document.getElementById("username").value,
-                pk_user_pw: document.getElementById("password").value,
-            }),
-        }).then((response => response.json()))
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            pk_user_id: document.getElementById("username").value,
+            pk_user_pw: document.getElementById("password").value,
+        }),
+    }).then((response => response.json()))
         .then(json => {
             if (json['status'] == 400) {
                 document.getElementById("total").style.display = "block";
