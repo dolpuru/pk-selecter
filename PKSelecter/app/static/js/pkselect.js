@@ -32,6 +32,7 @@ function page1() {
 function loginmove() {
     document.getElementById("total").style.display = "none";
     document.getElementById("over").style.display = "block";
+    document.body.style.backgroundColor = "white";
     document.body.style.lineHeight = "100px";
 
     fetch("/login", {
