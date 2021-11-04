@@ -11,8 +11,8 @@ def login_check_and_get_session(lms_id, lms_pw):
 
     if lms_id.isdigit() != True and len(lms_id) != 9:
         return False
-    elif len(lms_pw) != 6 and not (10 <= len(lms_pw) <= 16):
-        return False
+    # elif len(lms_pw) != 6 and not (10 <= len(lms_pw) <= 16):
+    #     return False
     else:
 
         session = requests.Session()
