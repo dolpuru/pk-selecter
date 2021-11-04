@@ -15,7 +15,6 @@ $(document).ready(function () {
         $(".form-panel.two").removeClass("active");
     });
 });
-document.getElementById("server_error").style.display = "none";
 
 function githubmove() {
     location.href = 'https://github.com/doongu/pk_selecter_pj';
@@ -26,7 +25,7 @@ function gitbookmove() {
 }
 
 function page1() {
-    location.href = 'http://127.0.0.1:5002';
+    location.href = 'http://127.0.0.1:5003';
 }
 
 
@@ -52,12 +51,14 @@ function loginmove() {
                 document.getElementById("over").style.display = "none";
                 document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
                 jQuery('#server_error').show();
+                document.getElementById("server_error").style.display = "flex";
                 document.body.style.lineHeight = "1.6em";
                 document.getElementById("server_error_inner").innerHTML = "비밀번호가 틀렸습니다. <br>다시 입력해 주세요 :)"
 
             } else if (json['status'] == 500) {
                 document.getElementById("total").style.display = "block";
                 document.getElementById("over").style.display = "none";
+                document.getElementById("server_error").style.display = "flex";
                 document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
                 jQuery('#server_error').show();
                 document.body.style.lineHeight = "1.6em";

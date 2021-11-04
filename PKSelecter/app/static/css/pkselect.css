@@ -321,6 +321,44 @@ a {
   animation: loading 2s ease infinite;
 }
 
+/* 서버에러 */
+#server_error {
+  display: none;
+  width: 600px;
+  height: 400px;
+  box-shadow: 10px 10px 15px rgb(0 0 0 / 20%);
+  z-index: 20;
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 4px;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin-left: 20%;
+  margin-top: 0%;
+  left: 0;
+  right: 0;
+}
+
+#server_error>div {
+  margin-bottom: 30px;
+}
+
+#mainpagebutton {
+  outline: none;
+  background: #14274E;
+  width: 200px;
+  height: 80px;
+  font-size: 30px;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 20px;
+  padding-top: 14px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
 
 
 /* secondpage(모바일) */
@@ -694,6 +732,7 @@ td {
 
   /* error alert */
   #server_error {
+    display: none;
     width: 300px;
     height: 200px;
     align-items: center;
