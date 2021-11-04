@@ -36,15 +36,15 @@ function loginmove() {
     document.body.style.lineHeight = "100px";
 
     fetch("/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            pk_user_id: document.getElementById("username").value,
-            pk_user_pw: document.getElementById("password").value,
-        }),
-    }).then((response => response.json()))
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                pk_user_id: document.getElementById("username").value,
+                pk_user_pw: document.getElementById("password").value,
+            }),
+        }).then((response => response.json()))
         .then(json => {
             if (json['status'] == 400) {
                 document.getElementById("total").style.display = "block";
@@ -145,8 +145,8 @@ function loginmove() {
                  * @param {number} dayIn
                  */
 
-                function loadDate(date, dayIn) {
-                    document.querySelector('.cal-day').textContent = date + " " + init.dayList[dayIn]
+                function loadDate(current_month,date, dayIn) {
+                    document.querySelector('.cal-day').textContent = current_month+ "월 " +date + "일 (" + init.dayList[dayIn]+")";
                 }
 
                 /**
@@ -154,6 +154,7 @@ function loginmove() {
                  */
 
                 let current_month;
+                let current_year;
 
                 function loadYYMM(fullDate) {
                     let yy = fullDate.getFullYear();
@@ -170,15 +171,15 @@ function loginmove() {
                     document.querySelector('.cal-month').textContent = init.monList[mm];
                     current_month = mm + 1;
                     document.querySelector('.cal-year').textContent = yy;
+                    console.log(yy);
 
                     let trtd = '';
-                    let startCount;
+                    let startCount = 1;
                     let countDay = 0;
-                    let circle_box = '';
 
                     for (let i = 0; i < 6; i++) {
+                        if(startCount){
                         trtd += '<tr>';
-
                         for (let j = 0; j < 7; j++) {
                             if (i === 0 && !startCount && j === firstDay.getDay()) {
                                 startCount = 1;
@@ -192,23 +193,29 @@ function loginmove() {
                                 trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
                             }
                             trtd += (startCount) ? ++countDay : '';
+                            trtd += circle_marked(countDay,yy,startCount);
                             if (countDay === lastDay.getDate()) {
                                 startCount = 0;
                             }
-                            trtd += circle_marked(countDay);
                             trtd += '</td>';
                         }
                         trtd += '</tr>';
                     }
+                    }
                     $calBody.innerHTML = trtd;
+                    current_year = yy;
                 }
 
-                function circle_marked(countDay) {
+                function circle_marked(countDay,yy,startCount) {
                     for (let j = 0; j < json['lms_data'].length; j++) {
                         let deadline_before = json['lms_data'][j]['date_deadline'];
                         let deadline_date = deadline_before.substr(8, 2);
                         let deadline_month = deadline_before.substr(5, 2);
-                        if (deadline_date == countDay && deadline_month == current_month) {
+                        let deadline_year = deadline_before.substr(0, 4);
+                        if (deadline_date == countDay && deadline_month == current_month && deadline_year == yy && startCount != 0) {
+                            // console.log("date"+deadline_date+":"+countDay);
+                            // console.log("month"+deadline_month+":"+current_month);
+                            // console.log("year"+deadline_year+":"+yy);
                             return "<div id = circle1></div>";
                         }
                     }
@@ -223,7 +230,8 @@ function loginmove() {
                         let deadline_before = json['lms_data'][j]['date_deadline'];
                         let deadline_date = deadline_before.substr(8, 2);
                         let deadline_month = deadline_before.substr(5, 2);
-                        if (deadline_date == date && deadline_month == current_month) {
+                        let deadline_year = deadline_before.substr(0, 4);
+                        if (deadline_date == date && deadline_month == current_month && deadline_year == current_year) {
                             Content[j] = document.createElement('div');
                             Content[j].id = 'content'
                             let Subject_name = json['lms_data'][j]['subject_name'].split(']');
@@ -267,7 +275,7 @@ function loginmove() {
                 }
 
                 loadYYMM(init.today);
-                loadDate(init.today.getDate(), init.today.getDay());
+                loadDate(init.today.getMonth(),init.today.getDate(), init.today.getDay());
 
                 $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
                 $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
@@ -279,7 +287,7 @@ function loginmove() {
                             init.activeDTag.classList.remove('day-active');
                         }
                         let day = Number(e.target.textContent);
-                        loadDate(day, e.target.cellIndex);
+                        loadDate(current_month,day, e.target.cellIndex);
                         removecontexts();
                         loadcontexts(day);
                         e.target.classList.add('day-active');
