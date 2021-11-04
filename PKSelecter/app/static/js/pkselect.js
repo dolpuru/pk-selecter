@@ -26,18 +26,15 @@ function gitbookmove() {
 }
 
 function page1() {
-    //첫페이지 링크 걸기
-    location.href = 'http://127.0.0.1:5000';
+    location.href = 'http://127.0.0.1:5002';
 }
 
 
 function loginmove() {
-  document.getElementById("total").style.display = "none";
-  document.getElementById("over").style.display = "block";
-  document.body.style.backgroundColor = "white";
-  document.body.style.lineHeight = "100px";
-  // document.body.style.backgroundColor = "white";
-  // 
+    document.getElementById("total").style.display = "none";
+    document.getElementById("over").style.display = "block";
+    document.body.style.backgroundColor = "white";
+    document.body.style.lineHeight = "100px";
 
     fetch("/login", {
             method: "POST",
@@ -57,7 +54,7 @@ function loginmove() {
                 jQuery('#server_error').show();
                 document.body.style.lineHeight = "1.6em";
                 document.getElementById("server_error_inner").innerHTML = "비밀번호가 틀렸습니다. <br>다시 입력해 주세요 :)"
-                
+
             } else if (json['status'] == 500) {
                 document.getElementById("total").style.display = "block";
                 document.getElementById("over").style.display = "none";
@@ -226,7 +223,8 @@ function loginmove() {
                         if (deadline_date == date && deadline_month == current_month) {
                             Content[j] = document.createElement('div');
                             Content[j].id = 'content'
-                            Content[j].innerHTML = json['lms_data'][j]['class'] + ": " + json['lms_data'][j]['subject_name'] + "<br>" + json['lms_data'][j]['context'];
+                            let Subject_name = json['lms_data'][j]['subject_name'].split(']');
+                            Content[j].innerHTML = json['lms_data'][j]['class'] + ": " + Subject_name[1] + "<br>" + json['lms_data'][j]['context'];
                             document.getElementById('Context-box').appendChild(Content[j]);
                             count++;
                         }
@@ -284,6 +282,7 @@ function loginmove() {
                         e.target.classList.add('day-active');
                         init.activeDTag = e.target;
                         init.activeDate.setDate(day);
+                        document.getElementById("clicked-date").style.display = "block";
                     }
                 });
 
@@ -464,5 +463,5 @@ function loginmove() {
                 }
             }
 
-     })
+        })
 }

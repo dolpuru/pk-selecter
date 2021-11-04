@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import requests
 import urllib3
+import time
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -142,16 +143,26 @@ def get_subject_information(lms_id, lms_pw):
 
         # 수업 처리 부분
 
-        temp_temp = Sub_class_info(subject_list[index][1], session)
+        temp_li_ = Sub_class_info(subject_list[index][1], session)
+        time.sleep(1)
+        # print("subject_list", subject_list[index])
+        # if len(temp_li_) > 0:
+        #     print(len(temp_li_))
+        #     print("=====================================")
+        #     print(temp_li_[0])
+        # # print("temp tmpe", temp_temp[0])
+        # if index==2:
+        #     break
 
-        for i in range(len(temp_temp)):
-            temp_list_find = temp_temp[i].text.split()
+        for i in range(len(temp_li_)):
+            temp_list_find = temp_li_[i].text.split()
 
             if int(temp_list_find[-4][:-1]) < 100:
                 index_ha = temp_list_find.index("학습인정기간")
 
                 if "아닙니다." not in temp_list_find[:index_ha]:
-                    calender_form["subject_name"] = subject_list[index][0]
+                    calender_form["subject_name"] = subject_list[index - 1][0]
+                    print("into calender_form ", subject_list[index][0], index)
                     calender_form["class"] = "수업"
                     calender_form["context"] = " ".join(temp_list_find[:index_ha])
                     calender_form["date_deadline"] = " ".join(
@@ -207,5 +218,5 @@ def get_subject_information(lms_id, lms_pw):
     return return_dic
 
 
-# return_json = get_subject_information("201712672", "rlflsdPrh12#")
+# return_json = get_subject_information("202013245", "125734")
 # print("return_json :: ", return_json)
