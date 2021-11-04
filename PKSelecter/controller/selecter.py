@@ -144,15 +144,7 @@ def get_subject_information(lms_id, lms_pw):
         # 수업 처리 부분
 
         temp_li_ = Sub_class_info(subject_list[index][1], session)
-        time.sleep(1)
-        # print("subject_list", subject_list[index])
-        # if len(temp_li_) > 0:
-        #     print(len(temp_li_))
-        #     print("=====================================")
-        #     print(temp_li_[0])
-        # # print("temp tmpe", temp_temp[0])
-        # if index==2:
-        #     break
+
 
         for i in range(len(temp_li_)):
             temp_list_find = temp_li_[i].text.split()
@@ -161,6 +153,7 @@ def get_subject_information(lms_id, lms_pw):
                 index_ha = temp_list_find.index("학습인정기간")
 
                 if "아닙니다." not in temp_list_find[:index_ha]:
+                    # 이유를 모르겠음 .... 왜 -1 하면 되는 것인가 ?
                     calender_form["subject_name"] = subject_list[index - 1][0]
                     print("into calender_form ", subject_list[index][0], index)
                     calender_form["class"] = "수업"
