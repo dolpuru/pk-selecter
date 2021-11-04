@@ -303,11 +303,13 @@ a {
   display: none;
   font-size: 40px;
   font-family: "logofont";
-  color: rgba(0, 0, 0, 0.1);
+  color: white;
   position: fixed;
   left: 50%;
   top: 48%;
   transform: translate(-50%, 0);
+  transition-property: background-color;
+  transition-duration: 3s;
 }
 
 #over::before {
