@@ -30,10 +30,6 @@ function page1() {
 
 
 function loginmove() {
-    document.getElementById("total").style.display = "none";
-    document.getElementById("over").style.display = "block";
-    document.body.style.backgroundColor = "white";
-    document.body.style.lineHeight = "100px";
 
     fetch("/login", {
         method: "POST",
@@ -47,23 +43,20 @@ function loginmove() {
     }).then((response => response.json()))
         .then(json => {
             if (json['status'] == 400) {
-                document.getElementById("total").style.display = "block";
-                document.getElementById("over").style.display = "none";
-                document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
                 jQuery('#server_error').show();
                 document.getElementById("server_error").style.display = "flex";
-                document.body.style.lineHeight = "1.6em";
                 document.getElementById("server_error_inner").innerHTML = "비밀번호가 틀렸습니다. <br>다시 입력해 주세요 :)"
 
             } else if (json['status'] == 500) {
-                document.getElementById("total").style.display = "block";
-                document.getElementById("over").style.display = "none";
-                document.getElementById("server_error").style.display = "flex";
-                document.body.style.backgroundColor = "rgba(0,0,0,0.1)";
                 jQuery('#server_error').show();
-                document.body.style.lineHeight = "1.6em";
+                document.getElementById("server_error").style.display = "flex";
                 document.getElementById("server_error_inner").innerHTML = "서버 에러가 발생했습니다."
             } else if (json['status'] == 200) {
+
+                document.getElementById("total").style.display = "none";
+                document.getElementById("over").style.display = "block";
+                document.body.style.backgroundColor = "white";
+                document.body.style.lineHeight = "100px";
                 class Deque {
                     constructor() {
                         this.arr = [];

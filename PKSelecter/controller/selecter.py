@@ -145,7 +145,6 @@ def get_subject_information(lms_id, lms_pw):
 
         temp_li_ = Sub_class_info(subject_list[index][1], session)
 
-
         for i in range(len(temp_li_)):
             temp_list_find = temp_li_[i].text.split()
 
