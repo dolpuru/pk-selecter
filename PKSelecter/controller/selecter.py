@@ -130,6 +130,7 @@ def get_subject_information(lms_id, lms_pw):
     """
     미완료 항목 크롤링
     """
+    sub_percent = "100%"  # 100% 안들으면 미완료
     return_dic = {"status": 200, "subject": [], "lms_data": []}
     calender_form = {
         "subject_name": "",
@@ -148,7 +149,7 @@ def get_subject_information(lms_id, lms_pw):
         for i in range(len(temp_li_)):
             temp_list_find = temp_li_[i].text.split()
 
-            if int(temp_list_find[-4][:-1]) < 100:
+            if sub_percent not in temp_list_find:
                 index_ha = temp_list_find.index("학습인정기간")
 
                 if "아닙니다." not in temp_list_find[:index_ha]:
