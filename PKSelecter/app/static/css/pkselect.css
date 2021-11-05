@@ -463,7 +463,6 @@ td {
   font-family: "baiscfont";
   width: 76%;
   margin-top: 8%;
-  padding: 20px 20px 10px;
   text-align: center;
   font-weight: 500;
   cursor: default;
@@ -729,7 +728,7 @@ td {
     margin-bottom: 15px;
     table-layout: fixed;
     width: 550px;
-    margin-top: 0.5%;
+    margin-top: 5%;
   }
 
   /* error alert */
@@ -763,8 +762,9 @@ td {
     text-align: center;
     z-index: 3;
     position: sticky;
-    top: 0.5%;
-    margin-top: 0.5%;
+    top: 3%;
+    padding: 20px;
+    margin-top: 3%;
   }
 
   #clicked-date {
@@ -808,6 +808,9 @@ td {
   }
 
   @media screen and (max-width: 1000px) {
+    #tableL{
+      margin-top: 15px;
+    }
     #secondpage {
       flex-direction: column;
       align-items: center;

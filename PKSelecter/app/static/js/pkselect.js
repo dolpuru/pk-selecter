@@ -145,8 +145,8 @@ function loginmove() {
                  * @param {number} dayIn
                  */
 
-                function loadDate(current_month,date, dayIn) {
-                    document.querySelector('.cal-day').textContent = current_month+ "월 " +date + "일 (" + init.dayList[dayIn]+")";
+                function loadDate(current_month, date, dayIn) {
+                    document.querySelector('.cal-day').textContent = current_month + "월 " + date + "일 (" + init.dayList[dayIn] + ")";
                 }
 
                 /**
@@ -167,21 +167,22 @@ function loginmove() {
                         markToday = init.today.getDate();
                     }
 
-
                     document.querySelector('.cal-month').textContent = init.monList[mm];
                     current_month = mm + 1;
                     document.querySelector('.cal-year').textContent = yy;
-                    console.log(yy);
 
                     let trtd = '';
-                    let startCount = 1;
+                    let upload_trtd = '';
+                    let startCount;
                     let countDay = 0;
+                    let tr_count = 0;
 
                     for (let i = 0; i < 6; i++) {
-                        if(startCount){
+
                         trtd += '<tr>';
                         for (let j = 0; j < 7; j++) {
                             if (i === 0 && !startCount && j === firstDay.getDay()) {
+                                console.log(j)
                                 startCount = 1;
                             }
                             if (!startCount) {
@@ -193,29 +194,30 @@ function loginmove() {
                                 trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
                             }
                             trtd += (startCount) ? ++countDay : '';
-                            trtd += circle_marked(countDay,yy,startCount);
+                            trtd += circle_marked(countDay, yy, startCount);
                             if (countDay === lastDay.getDate()) {
                                 startCount = 0;
+                                tr_count++;
                             }
                             trtd += '</td>';
                         }
                         trtd += '</tr>';
+                        if (tr_count <= 7) {
+                            upload_trtd += trtd;
+                            trtd = "";
+                        }
                     }
-                    }
-                    $calBody.innerHTML = trtd;
+                    $calBody.innerHTML = upload_trtd;
                     current_year = yy;
                 }
 
-                function circle_marked(countDay,yy,startCount) {
+                function circle_marked(countDay, yy, startCount) {
                     for (let j = 0; j < json['lms_data'].length; j++) {
                         let deadline_before = json['lms_data'][j]['date_deadline'];
                         let deadline_date = deadline_before.substr(8, 2);
                         let deadline_month = deadline_before.substr(5, 2);
                         let deadline_year = deadline_before.substr(0, 4);
                         if (deadline_date == countDay && deadline_month == current_month && deadline_year == yy && startCount != 0) {
-                            // console.log("date"+deadline_date+":"+countDay);
-                            // console.log("month"+deadline_month+":"+current_month);
-                            // console.log("year"+deadline_year+":"+yy);
                             return "<div id = circle1></div>";
                         }
                     }
@@ -275,7 +277,7 @@ function loginmove() {
                 }
 
                 loadYYMM(init.today);
-                loadDate(init.today.getMonth(),init.today.getDate(), init.today.getDay());
+                loadDate(init.today.getMonth(), init.today.getDate(), init.today.getDay());
 
                 $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
                 $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
@@ -287,7 +289,7 @@ function loginmove() {
                             init.activeDTag.classList.remove('day-active');
                         }
                         let day = Number(e.target.textContent);
-                        loadDate(current_month,day, e.target.cellIndex);
+                        loadDate(current_month, day, e.target.cellIndex);
                         removecontexts();
                         loadcontexts(day);
                         e.target.classList.add('day-active');
@@ -472,6 +474,7 @@ function loginmove() {
                     let secondpage = document.getElementById("secondpage");
                     secondpage.style.display = "flex";
                 }
+
             }
 
         })
