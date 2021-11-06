@@ -2,7 +2,6 @@ import click
 import unittest
 import os
 
-# from tests import mytest
 from app import create_app
 
 from config import config
@@ -19,13 +18,6 @@ def develope(name):
     print("mode: dev_mode, {}".format(name))
     a = config_dict["testing"]
     print(a.test_config)
-    # print("Aaaaaaaaaa", config_dict["testing"])
-    # print("bbbbbbbbbb", config_dict["testing"].test_config)
-    # application.config.update(config_dict["testing"].test_config)
-    # application.debug = True
-    # application.testing = False
-
-    # application.run()
 
 
 @application.cli.command("production_mode")
