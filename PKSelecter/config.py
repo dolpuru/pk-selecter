@@ -3,14 +3,7 @@ Application Config Setting
 """
 import os
 
-# from logging.config import dictConfig
-
-# from dotenv import load_dotenv
-
-# load_dotenv(verbose=True)
-
 APP_NAME = "PKSelect"
-# BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:

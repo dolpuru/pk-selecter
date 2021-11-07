@@ -1,10 +1,8 @@
-import click
-import unittest
 import os
+import unittest
+import click
 
-# from tests import mytest
 from app import create_app
-
 from config import config
 from config import config_dict
 
