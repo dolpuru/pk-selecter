@@ -33,32 +33,6 @@ class ProductionConfig(Config):
     TESTING = False
     ENV = "=====Production Mode====="
 
-    # @staticmethod
-    # def init_app(app):
-    #     '''logging'''
-    #     dictConfig({
-    #         'version': 1,
-    #         'formatters': {
-    #             'default': {
-    #                 'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    #             }
-    #         },
-    #         'handlers': {
-    #             'file': {
-    #                 'level': 'WARNING',
-    #                 'class': 'logging.handlers.RotatingFileHandler',
-    #                 'filename': os.getenv(APP_NAME + '_ERROR_LOG_PATH') or './server.error.log',
-    #                 'maxBytes': 1024 * 1024 * 5,
-    #                 'backupCount': 5,
-    #                 'formatter': 'default',
-    #             },
-    #         },
-    #         'root': {
-    #             'level': 'WARNING',
-    #             'handlers': ['file']
-    #         }
-    #     })
-
 
 config_dict = {
     "development": DevelopmentConfig,
