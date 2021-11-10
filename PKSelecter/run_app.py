@@ -1,13 +1,14 @@
 import os
 import unittest
 import click
+from flask.app import Flask
 
 from app import create_app
 from config import config
 from config import config_dict
 
 
-application = create_app(config)
+application = create_app(config_dict['testing'])
 
 
 @application.cli.command("dev_mode")
@@ -16,7 +17,7 @@ def develope(name):
     """develope_mode"""
     print("mode: dev_mode, {}".format(name))
     a = config_dict["testing"]
-    print(a.test_config)
+    print(a)
 
 
 @application.cli.command("production_mode")
@@ -29,15 +30,16 @@ def production(name):
 @application.cli.command("test_mode")
 @click.argument("test_names_tuple", nargs=-1)  # nargs -1 로 해야 문자열로 받음 아니면 문자로 받음
 def test(test_names_tuple):
-    os.environ["FLASK_CONFIG"] = "testing"
-    print("flask_config in run_app.py", os.getenv("FLASK_CONFIG"))  # 3
+    # os.environ["FLASK_CONFIG"] = "testing"
+    # application.config.from_object(config_dict["testing"])
+
     """test_mode"""
     test_dir = "test"
     print(
-        "application config, DEBUG, Testing",
-        application.config["ENV"],
-        application.config["DEBUG"],
-        application.config["TESTING"],
+        "application config, DEBUG, Testing\n",
+        "ENV : ", application.config["ENV"], "\n"
+        "DEBUG : ", application.config["DEBUG"], "\n"
+        " TESTING : ", application.config["TESTING"], "\n",
     )  # 4
     try:
         if test_names_tuple:
@@ -51,5 +53,7 @@ def test(test_names_tuple):
         else:
             raise ValueError
 
+    
     except ValueError:
         print("Error, you must be 'flask test_mode a.py b.py ...' ")
+    
