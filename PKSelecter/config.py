@@ -18,38 +18,32 @@ class Config:
 
 
 class TestingConfig(Config):
-    # test_config = dict(DEBUG=True, 
-    # TESTING=True, 
-    # ENV="=====TEST Mode=====")
-    DEBUG=True, 
-    TESTING=True, 
-    ENV="=====TEST Mode====="
+    DEBUG=True
+    TESTING=True
+    ENV="==========TEST Mode=========="
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
     TESTING = False
-    ENV = "==========helllo hjk develope========="
+    ENV = "==========develope mode=========="
 
 
 class ProductionConfig(Config):
     DEBUG = False
-    TESTING = True
-    ENV = "=====Production Mode====="
+    TESTING = False
+    ENV = "==========Production Mode=========="
 
 
 config_dict = {
-    "development": DevelopmentConfig,
-    "production": ProductionConfig,
-    "testing": TestingConfig,
-    "default": DevelopmentConfig,
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing': TestingConfig,
+    'default': DevelopmentConfig,
 }
 
 config = config_dict[os.getenv("FLASK_CONFIG") or "default"]
-# print(config)
-# # os.environ("FLASK_CONFIG") = "testing"
-# os.getenv("FLASK_CONFIG") = "testing"
-# print("flask_config :::::::::::", os.getenv("FLASK_CONFIG"))  # 1
+print("FLASKCONFIG", os.getenv("FLASK_CONFIG"))
 
 if __name__ == "__main__":
     pass

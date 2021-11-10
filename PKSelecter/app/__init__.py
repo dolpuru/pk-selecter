@@ -13,17 +13,13 @@ from .api.controller_api import controller_bp
 # Develope : debug = True, 개발
 def create_app(config):
 
-    app = Flask(
+    application = Flask(
         import_name=__name__, static_folder="./static/", template_folder="./static/"
     )
-    # a = (DEBUG=true)
-    # app.config.update(DEBUG=True, TESTING=False)
-    # config.init_app(app)
-    app.config.from_object(config)
 
-    print("app.config in __init__.py", app.config["ENV"])  # 2
+    application.config.from_object(config)
 
-    app.register_blueprint(views_bp, url_prefix="/")
-    app.register_blueprint(controller_bp, url_prefix="/")
-    
-    return app
+    application.register_blueprint(views_bp, url_prefix="/")
+    application.register_blueprint(controller_bp, url_prefix="/")
+
+    return application

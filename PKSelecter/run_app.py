@@ -8,30 +8,28 @@ from config import config
 from config import config_dict
 
 
-application = create_app(config_dict['testing'])
+application = create_app(config_dict['development']) # FLASK_CONFIG or Devemode
 
 
+
+"""development_mode"""
 @application.cli.command("dev_mode")
 @click.argument("name")
-def develope(name):
-    """develope_mode"""
+def development(name):
+
+    # application.run(debug=True)
+    print(
+        "ENV : ", application.config["ENV"], "\n"
+        "DEBUG : ", application.config["DEBUG"], "\n"
+        "TESTING : ", application.config["TESTING"], "\n",
+    )  
     print("mode: dev_mode, {}".format(name))
-    a = config_dict["testing"]
-    print(a)
 
 
-@application.cli.command("production_mode")
-@click.argument("name")
-def production(name):
-    """production_mode"""
-    print("mode: production_mode, {}".format(name))
-
-
+"""test_mode"""
 @application.cli.command("test_mode")
 @click.argument("test_names_tuple", nargs=-1)  # nargs -1 로 해야 문자열로 받음 아니면 문자로 받음
 def test(test_names_tuple):
-    # os.environ["FLASK_CONFIG"] = "testing"
-    # application.config.from_object(config_dict["testing"])
 
     """test_mode"""
     test_dir = "test"
@@ -39,8 +37,8 @@ def test(test_names_tuple):
         "application config, DEBUG, Testing\n",
         "ENV : ", application.config["ENV"], "\n"
         "DEBUG : ", application.config["DEBUG"], "\n"
-        " TESTING : ", application.config["TESTING"], "\n",
-    )  # 4
+        "TESTING : ", application.config["TESTING"], "\n",
+    )  
     try:
         if test_names_tuple:
             for index in range(len(test_names_tuple)):
