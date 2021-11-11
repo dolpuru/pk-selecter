@@ -1,5 +1,5 @@
 from flask import request
-from controller import login_checker, selecter
+from controller import login_check, selecter
 
 """
 controller/login_checker.py에 해당 값을 보냄
@@ -12,7 +12,7 @@ def login_router(login_bp):
         pk_user_id = json_data["pk_user_id"]
         pk_user_pw = json_data["pk_user_pw"]
 
-        login_check_value = login_checker.login_check_and_get_session(
+        login_check_value = login_check.login_check_and_get_session(
             pk_user_id, pk_user_pw
         )
 
