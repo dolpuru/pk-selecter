@@ -4,8 +4,6 @@ from controller import login_checker, selecter
 """
 controller/login_checker.py에 해당 값을 보냄
 """
-
-
 def login_router(login_bp):
     @login_bp.route("/login", methods=["POST"])
     def login_api():

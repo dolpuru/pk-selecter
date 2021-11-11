@@ -13,6 +13,10 @@ from config import config_dict
 application = create_app(config) # FLASK_CONFIG or Devemode
 
 
+# production : debug = False, Testing = False,
+# Develope : debug = True, 
+# Testing : ENV로 구분 후 테스트.py 실행
+# Develope : debug = True, 개발
 """test_mode"""
 @application.cli.command("test_mode")
 @click.argument("test_names_tuple", nargs=-1)  # nargs -1 로 해야 문자열로 받음 아니면 문자로 받음
