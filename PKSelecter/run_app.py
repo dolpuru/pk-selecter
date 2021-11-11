@@ -11,24 +11,6 @@ from config import config_dict
 
 
 application = create_app(config) # FLASK_CONFIG or Devemode
-print(os.getenv("FLASK_CONFIG"))
-
-"""development_mode"""
-# @application.cli.command("dev_mode")
-# @click.argument("name", nargs=-1)
-# def development(name):
-    
-#     application = create_app(config_dict['development'])
-
-#     print(
-#         "ENV : ", application.config["ENV"], "\n"
-#         "DEBUG : ", application.config["DEBUG"], "\n"
-#         "TESTING : ", application.config["TESTING"], "\n",
-#     )  
-#     print("mode: dev_mode, {}".format(name))
-    
-#     application.run()
-
 
 
 """test_mode"""
