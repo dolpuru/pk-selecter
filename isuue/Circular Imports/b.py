@@ -1,21 +1,9 @@
-print("b")
+def function_b():
+    print('function_b')
 
 
-def deco(test):
-    @test.route("/add")
-    def add_api():
-        pass
-    
-    @test.route("/hello")
+def function_c():
+    import a
 
-
-
-# import a
-
-# print("b")
-
-
-# @a.sample_api.route("/add")
-# def add_api():
-#     a.sample_api
-#     pass
+    print('function_c')
+    return a.function_a()
