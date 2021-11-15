@@ -182,7 +182,6 @@ function loginmove() {
                         trtd += '<tr>';
                         for (let j = 0; j < 7; j++) {
                             if (i === 0 && !startCount && j === firstDay.getDay()) {
-                                console.log(j)
                                 startCount = 1;
                             }
                             if (!startCount) {
