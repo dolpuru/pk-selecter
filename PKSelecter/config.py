@@ -24,15 +24,13 @@ class TestingConfig(Config):
 
 
 class DevelopmentConfig(Config):
-    DEBUG=False
+    DEBUG=True
     TESTING=False
-    ENV="==========develope mode=========="
 
 
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
-    ENV = "==========Production Mode=========="
 
 
 config_dict = {
@@ -43,6 +41,6 @@ config_dict = {
 }
 
 config = config_dict[os.getenv("FLASK_CONFIG") or "default"]
-print(1)
+# print(os.getenv("FLASK_CONFIG"))
 if __name__ == "__main__":
     pass

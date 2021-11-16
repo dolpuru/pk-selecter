@@ -61,31 +61,11 @@ def fake_request_data(fake_cnt):
             },  # id는 9글자, 비밀번호는 6자리 숫자(asd) 숫자 특수문자 포함 10자리 이상혹은 최대 16자리 , 첫 데이터는 통과하는 데이터 넣을거라, 항상 숫자 1 특수문자 1 을 포함하도록 하였음.
             "status_code": "200",
         }
+        for _ in range(fake_cnt) 
     ]
-
-    request_data_result += (
-        {
-            "uri": "http://localhost:"
-            + str(fake.random_int(min=0, max=65535))
-            + "/"
-            + path,
-            "method": fake.random_element(elements=("GET", "POST", "PUT")),
-            "form_data_result": {
-                "lms_id": fake.lexify(
-                    text="?" * fake.random_int(min=0, max=18),
-                    letters=string.digits + string.ascii_letters,
-                ),
-                "lms_pw": fake.lexify(
-                    text="?" * fake.random_int(min=0, max=16),
-                    letters=(string.ascii_letters + string.digits + special_chr),
-                ),
-            },  # id는 9글자, 비밀번호는 6자리 숫자(asd) 숫자 특수문자 포함 10자리 이상혹은 최대 16자리
-            "status_code": fake.random_element(elements=(200, 400, 404)),
-        }
-        for _ in range(fake_cnt)
-    )
 
     return request_data_result
 
-
+print(fake_request_data(1))
+print(len(fake_request_data(1)))
 # form_data_result는 서버 -> lms에도 이용하니까 따로 빼둬야하지 않을까 ? 아니면 요청 하나하나에 힘을 실어야하기에 ㅇㅇ
