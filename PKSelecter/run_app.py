@@ -1,18 +1,13 @@
-import os
 import time
-from os import path as environ
 import unittest
 import click
-from flask.app import Flask
-from flask.cli import FlaskGroup
 
 from app import create_app
 from config import config
 from config import config_dict
 
 
-application = create_app(config) # FLASK_CONFIG or Devemode
-
+application = create_app(config) 
 
 # production : debug = False, Testing = False,
 # Develope : debug = True, 
