@@ -27,9 +27,12 @@ def test(test_names_tuple):
         " |- - - DEBUG : ", application.config["DEBUG"], "- - -|"
         "\n |- - - TESTING : ", application.config["TESTING"], " - -|"
         "\n ┗ - - - - - - - - - - - - -┛\n"
-    )  
+    )
+
+
     try:
         # tests 폴더에 없는 요소가 들어오면 에러처리해야함 현재는 비었는지만 처리중 
+        # if test_names_tuple in testfolder:
         if test_names_tuple:
             for index in range(len(test_names_tuple)):
                 time.sleep(2)
