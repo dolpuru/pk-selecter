@@ -3,7 +3,7 @@
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=135&section=header&text=&fontSize=90&fontAlignY=30&)
 
 <h1>Hello, This Project is pk_selecter</h1>
-<h6> 이런 경험 있지 않나요? </h6>
+<h6> 이런 경험 있지 않나요? 하나하나 확인하기 </h6>
 
 <p align="center"><img src="./gif_for_read-me/lms_problem.gif" width="600" height="294"/></p>
 
