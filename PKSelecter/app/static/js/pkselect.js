@@ -317,8 +317,6 @@ function marktodayitem(task, date) {
     date.style.fontWeight = "bold";
 }
 
-// 삭제
-loginmove();
 
 function loginmove() {
     showLoadingPage();
