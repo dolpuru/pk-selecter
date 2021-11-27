@@ -392,10 +392,12 @@ section.buttons {
   display: flex;
   justify-content: space-evenly;
 }
-.delectBtn{
+
+.delectBtn {
   margin-left: 10%;
 }
-.ddayBtn{
+
+.ddayBtn {
   margin-right: 10%;
 }
 
@@ -414,6 +416,7 @@ section.buttons {
   justify-content: center;
   transition: transform var(--animation-duration) ease;
 }
+
 .delectBtn:hover,
 .classfilterBtn:hover,
 .ddayBtn:hover {
@@ -422,6 +425,12 @@ section.buttons {
 }
 
 /* table(모바일) */
+.delectTabledata_subject,
+.tabledata_subject,
+.delectTabledata_catagory{
+  display: none;
+}
+
 table {
   font-family: inherit;
   word-break: break-all;
@@ -453,21 +462,26 @@ td {
 }
 
 #tabledata_tableL th,
-#delectTabledata_tableL th{
+#delectTabledata_tableL th {
   background-color: var(--color-tableL);
   color: var(--color-white);
 }
 
 #tabledata_tableHW th,
-#delectTabledata_tableHW th{
+#delectTabledata_tableHW th {
   background-color: var(--color-tableHW);
   color: var(--color-white);
 }
 
 #tabledata_tableT th,
-#delectTabledata_tableT th{
+#delectTabledata_tableT th {
   background-color: var(--color-tableT);
   color: var(--color-white);
+}
+
+.tabledata_subject th,
+.delectTabledata_subject th{
+  background-color: var(--color-calendar-marktaskday);
 }
 
 .tables tr:nth-child(even) {
@@ -509,7 +523,7 @@ td {
   margin-top: 15px;
 }
 
-#content-nonebox{
+#content-nonebox {
   font-family: "baiscfont";
   margin: 10px;
   border-radius: 10px;
@@ -549,7 +563,7 @@ td {
   font-size: 2.5rem;
 }
 
-#Context-box{
+#Context-box {
   height: 300px;
   font-size: 2rem;
   overflow-y: auto;
@@ -780,7 +794,6 @@ td {
     margin-bottom: 15px;
     table-layout: fixed;
     width: 550px;
-    margin-top: 0.5%;
   }
 
   /* error alert */
@@ -801,13 +814,13 @@ td {
     font-size: inherit;
   }
 
- /* 상단 bar(pc) */
-.delectBtn,
-.classfilterBtn,
-.ddayBtn {
-  font-size: 1rem;
-  margin: 5% 0 0 0;
-}
+  /* 상단 bar(pc) */
+  .delectBtn,
+  .classfilterBtn,
+  .ddayBtn {
+    font-size: 1rem;
+    margin: 5% 0 0 0;
+  }
 
   /* 캘린더(pc) */
   #secondpage {
@@ -822,7 +835,7 @@ td {
     text-align: center;
     z-index: 3;
     position: sticky;
-    top: 0.5%;
+    top: 5%;
     margin-top: 0.5%;
   }
 
@@ -834,7 +847,7 @@ td {
     font-size: 1.5rem;
   }
 
-  #Context-box{
+  #Context-box {
     height: 160px;
     font-size: 1rem;
   }
@@ -867,9 +880,10 @@ td {
   }
 
   @media screen and (max-width: 1000px) {
+
     #tabledata_tableL,
     #delectTabledata_tableL {
-      margin-top: 15px;
+      margin-top: 5%;
     }
 
     #secondpage {

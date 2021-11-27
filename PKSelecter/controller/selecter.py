@@ -138,7 +138,6 @@ def get_subject_information(lms_id, lms_pw):
         return_dic["subject"].append(subject_list[index][0])  # json 추가부분
 
         # 수업 처리 부분
-
         temp_li_ = Sub_class_info(subject_list[index][1], session)
 
         for i in range(len(temp_li_)):
@@ -203,6 +202,7 @@ def get_subject_information(lms_id, lms_pw):
                 return_dic["lms_data"].append(dict(calender_form))
 
     session.close()
+    print(return_dic)
     return return_dic
 
 

@@ -3,20 +3,21 @@
 
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-13PGHZ6T6G"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-<link rel="shortcut icon" type="image/x-icon" href="알파카 로고 아이콘 위치">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-13PGHZ6T6G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
 
-  gtag('config', 'G-13PGHZ6T6G');
-</script>
+		gtag('config', 'G-13PGHZ6T6G');
+	</script>
 	<meta charset="utf-8" name="viewport" content="user-scalable=no">
 	<meta property="og:title" content="한번에 미완료된 강의 및 과제를 조회할 수 있는 웹사이트 😆">
 	<!--이거 위치 추가해주세요 ! -->
-	<link rel="shortcut icon" type="image/x-icon"  href={{ url_for('static', filename='static/alphaca.jpg' ) }}>
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='static/alphaca.jpg' ) }}">
 	<meta property="og:image" content="{{ url_for('static', filename='static/logo.png' ) }}">
 	<title>pkselect</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -111,7 +112,9 @@
 				<div id="clicked-date">
 					<div class="cal-day"></div>
 					<div class="cal-date"></div>
-					<div id="Context-box"><div id = "content-nonebox">미제출 항목이 없습니다</div></div>
+					<div id="Context-box">
+						<div id="content-nonebox">미제출 항목이 없습니다</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -119,29 +122,12 @@
 
 		<div class="tables">
 			<section class="buttons">
-				<button class="delectBtn" onclick = "delectBtnonclick()" ></button>
-				<!-- <button class="classfilterBtn" onclick = "classfilterBtnonclick()">과목 별로 보기</button>
-				<button class="ddayBtn" onclick = "ddayBtnonclick()">종강 D-day</button> -->
+				<button class="delectBtn" onclick="delectBtnonclick()">마감기한 지난 항목 삭제하기</button>
+				<button class="classfilterBtn" onclick="classfilterBtnonclick()">과목 별로 보기</button>
+				<button class="ddayBtn" onclick="ddayBtnonclick()">종강 D-Day</button>
 			</section>
-			<table id="tabledata_tableL" class = "tabledata">
-				<th id="table_top">미완료 강의</th>
-			</table>
-			<table id="tabledata_tableHW" class = "tabledata">
-				<th id="table_top">미제출 과제</th>
-			</table>
-			<table id="tabledata_tableT" class = "tabledata">
-				<th id="table_top">미제출 시험</th>
-			</table>
-
-			<table id="delectTabledata_tableL" class = "delectTabledata">
-				<th id="table_top">미완료 강의</th>
-			</table>
-			<table id="delectTabledata_tableHW" class = "delectTabledata">
-				<th id="table_top">미제출 과제</th>
-			</table>
-			<table id="delectTabledata_tableT" class = "delectTabledata">
-				<th id="table_top">미제출 시험</th>
-			</table>
+			<section class="tablebone">
+			</section>
 		</div>
 	</div>
 </body>
