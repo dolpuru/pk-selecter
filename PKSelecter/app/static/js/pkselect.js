@@ -82,6 +82,15 @@ function onclick() {
 
 var ddayBtnshow = 0;
 
+function getDday() {
+    const vacation = new Date(2021,11,21,00,00,00);
+    const nowDay = new Date();
+    const gap = vacation - nowDay
+    const day = Math.floor(gap / (1000 * 60 * 60 * 24));
+    let result = day + 1;
+    return result;
+}
+
 function ddayBtnonclick() {
     const delectBtn = document.querySelector('.ddayBtn');
     if (ddayBtnshow == 1) {
@@ -91,11 +100,11 @@ function ddayBtnonclick() {
         delectBtn.style.border = "2px solid var(--color-Basic-navy)";
         if (Dday >= 10) {
             delectBtn.innerHTML = `D - ${Dday}`;
-        }else if(Dday == 0){
+        } else if (Dday == 0) {
             delectBtn.innerHTML = `!! D - DAY !!`;
-        }else if(Dday < 0){
+        } else if (Dday < 0) {
             delectBtn.innerHTML = "!! Vacation !!";
-        }else {
+        } else {
             delectBtn.innerHTML = `!! D - ${Dday} !!`;
         }
         ddayBtnshow = 0;
@@ -106,16 +115,6 @@ function ddayBtnonclick() {
         delectBtn.innerHTML = "종강 D-Day";
         ddayBtnshow = 1;
     }
-}
-
-function getDday() {
-    const vacation = new Date("2021-12-21:00:00:00+0900");
-    const nowDay = new Date();
-    const gap = vacation - nowDay
-    const day = Math.floor(gap / (1000 * 60 * 60 * 24));
-    const seconds = Math.floor((gap % (1000 * 60)) / 1000);
-    let result = day + 1;
-    return result;
 }
 
 function showLoadingPage() {
@@ -265,6 +264,13 @@ function showtablebysubject(answer, subjectname, datatype) {
                 }
                 tr.appendChild(td[1]);
                 tr.appendChild(td[2]);
+                let today = getToday();
+                let compareanswertoday =answer[X][i]['date_deadline'].split(' ');
+                let middlestep = compareanswertoday[0].split('.');
+                let compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
+                if (today === compareanswertoday[0] || today === compareanswertomorrow) {
+                    marktodayitem(td[1], td[2]);
+                }
             }
         }
     }
@@ -371,7 +377,7 @@ function arrangetablebycategory(data) {
 
 
 
-function showtablebycategory(answer, T, datatype,category) {
+function showtablebycategory(answer, T, datatype, category) {
 
     let row_1 = new Array(10000);
     let row
@@ -420,7 +426,6 @@ function showtablebycategory(answer, T, datatype,category) {
                         td[k][1].innerHTML = answer[i][k]['context'];
                         td[k][2].innerHTML = putthirdcolumn(answer[i][k]['date_deadline']);
                     }
-
                     let today = getToday();
                     let compareanswertoday = answer[i][k]['date_deadline'].split(' ');
                     let middlestep = compareanswertoday[0].split('.');
@@ -428,7 +433,6 @@ function showtablebycategory(answer, T, datatype,category) {
                     if (today === compareanswertoday[0] || today === compareanswertomorrow) {
                         marktodayitem(td[k][1], td[k][2]);
                     }
-
                     document.getElementById(T[i][datatype]).appendChild(row_1[k]);
                     for (let p = 0; p < 3; p++) {
                         row_1[k].appendChild(td[k][p]);
@@ -439,9 +443,9 @@ function showtablebycategory(answer, T, datatype,category) {
     }
 }
 
-function loadcatagoryTable(data, datatype, T,category) {
+function loadcatagoryTable(data, datatype, T, category) {
     let answer = arrangetablebycategory(data);
-    showtablebycategory(answer, T, datatype,category);
+    showtablebycategory(answer, T, datatype, category);
 }
 
 function delectTabledata(data) {
@@ -732,8 +736,8 @@ function loginmove() {
 
                 makeTableBonebycategory("tabledata");
                 makeTableBonebycategory("delectTabledata");
-                loadcatagoryTable(tabledata, 4, T,"tabledata");
-                loadcatagoryTable(delectedData, 5, T,"delectTabledata");
+                loadcatagoryTable(tabledata, 4, T, "tabledata");
+                loadcatagoryTable(delectedData, 5, T, "delectTabledata");
 
 
                 makeTableBonebysubject("tabledata", data['subject']);
