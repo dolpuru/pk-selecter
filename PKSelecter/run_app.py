@@ -1,17 +1,13 @@
-import os
-from os import path as environ
+import time
 import unittest
 import click
-from flask.app import Flask
-from flask.cli import FlaskGroup
 
 from app import create_app
 from config import config
 from config import config_dict
 
 
-application = create_app(config) # FLASK_CONFIG or Devemode
-
+application = create_app(config) 
 
 # production : debug = False, Testing = False,
 # Develope : debug = True, 
@@ -23,18 +19,23 @@ application = create_app(config) # FLASK_CONFIG or Devemode
 def test(test_names_tuple):
 
     application = create_app(config_dict['testing'])
-    test_dir = "test"
+    test_dir = "tests"
+
     print(
          application.config["ENV"],
         "|- - - Config Check - - - -|\n"
         " |- - - DEBUG : ", application.config["DEBUG"], "- - -|"
         "\n |- - - TESTING : ", application.config["TESTING"], " - -|"
         "\n ┗ - - - - - - - - - - - - -┛\n"
-    )  
+    )
+
+
     try:
-        # tests에 없는 요소가 들어오면 에러처리
+        # tests 폴더에 없는 요소가 들어오면 에러처리해야함 현재는 비었는지만 처리중 
+        # if test_names_tuple in testfolder:
         if test_names_tuple:
             for index in range(len(test_names_tuple)):
+                time.sleep(2)
                 print(">>> mode: test_mode \n>>> test name : '{}'".format(test_names_tuple[index]))
                 name_to_test_suite = unittest.TestLoader().discover(
                     test_dir, test_names_tuple[index]
@@ -45,6 +46,6 @@ def test(test_names_tuple):
 
     
     except ValueError:
-        print("Error, you must be 'flask test_mode a.py b.py ...' ")
+        print("Error, you must be 'flask test_mode a.py b.py ...' \n")
     
 

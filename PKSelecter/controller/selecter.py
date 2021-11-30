@@ -14,13 +14,8 @@ def get_session(lms_id, lms_pw):
 
     data = {"usr_id": lms_id, "usr_pwd": lms_pw}  # LMS 아이디  # LMS 비밀번호
 
-    request = session.post(session_url, data=data, verify=False)
-    confirm_login_soup = BeautifulSoup(request.text, "html.parser")
-
-    # login_checker 에서 시행했음.
-    # if "로그인 정보가 일치하지 않습니다." in confirm_login_soup.text:
-    #     session.close()  # 세션 닫기
-    #     return False
+    session.post(session_url, data=data, verify=False)
+ 
     return session
 
 
@@ -143,7 +138,6 @@ def get_subject_information(lms_id, lms_pw):
         return_dic["subject"].append(subject_list[index][0])  # json 추가부분
 
         # 수업 처리 부분
-
         temp_li_ = Sub_class_info(subject_list[index][1], session)
 
         for i in range(len(temp_li_)):
@@ -208,6 +202,7 @@ def get_subject_information(lms_id, lms_pw):
                 return_dic["lms_data"].append(dict(calender_form))
 
     session.close()
+    print(return_dic)
     return return_dic
 
 

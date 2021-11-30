@@ -31,9 +31,9 @@ def fake_request_data(fake_cnt):
 
     temp_uri = fake.uri()
     path = ""
-    true_path = "/main"
+    true_path = "/login"
     true_method = "POST"
-    true_status = "200"
+    rep_status = 400
     special_chr = "[-=+,#/\?:^$.@*\"※~&%ㆍ!‘|\(\)\[\]\<\>`']"
 
     for i in range(len(temp_uri) - 1, -1, -1):
@@ -46,11 +46,11 @@ def fake_request_data(fake_cnt):
     request_data_result = [
         {
             "uri": "http://localhost:" + str(80) + true_path,
+            "path" :  true_path,
             "method": true_method,
-            "status_code": true_status,
             "form_data_result": {
-                "lms_id": fake.numerify(text="#########"),  # 9글자 숫자
-                "lms_pw": fake.numerify(text="#")
+                "pk_user_id": fake.numerify(text="#########"),  # 9글자 숫자
+                "pk_user_pw": fake.numerify(text="#")
                 + fake.lexify(
                     text="????"
                     + "?"
@@ -59,30 +59,9 @@ def fake_request_data(fake_cnt):
                 )
                 + fake.lexify(text="?", letters=special_chr),
             },  # id는 9글자, 비밀번호는 6자리 숫자(asd) 숫자 특수문자 포함 10자리 이상혹은 최대 16자리 , 첫 데이터는 통과하는 데이터 넣을거라, 항상 숫자 1 특수문자 1 을 포함하도록 하였음.
-            "status_code": "200",
+            "status_code": rep_status,
         }
+        for _ in range(fake_cnt) 
     ]
-
-    request_data_result += (
-        {
-            "uri": "http://localhost:"
-            + str(fake.random_int(min=0, max=65535))
-            + "/"
-            + path,
-            "method": fake.random_element(elements=("GET", "POST", "PUT")),
-            "form_data_result": {
-                "lms_id": fake.lexify(
-                    text="?" * fake.random_int(min=0, max=18),
-                    letters=string.digits + string.ascii_letters,
-                ),
-                "lms_pw": fake.lexify(
-                    text="?" * fake.random_int(min=0, max=16),
-                    letters=(string.ascii_letters + string.digits + special_chr),
-                ),
-            },  # id는 9글자, 비밀번호는 6자리 숫자(asd) 숫자 특수문자 포함 10자리 이상혹은 최대 16자리
-            "status_code": fake.random_element(elements=(200, 400, 404)),
-        }
-        for _ in range(fake_cnt)
-    )
 
     return request_data_result

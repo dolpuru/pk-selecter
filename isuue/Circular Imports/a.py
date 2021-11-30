@@ -1,7 +1,8 @@
-from flask import Blueprint
-from b import deco
+import b
 
 
-sample_api = Blueprint("sample_api", __name__)
-deco(sample_api)
-print("sample_api")
+def function_a():
+    print('function_a')
+    return b.function_b()
+
+function_a()
