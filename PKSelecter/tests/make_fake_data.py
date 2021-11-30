@@ -86,6 +86,3 @@ def fake_request_data(fake_cnt):
     )
 
     return request_data_result
-
-
-# form_data_result는 서버 -> lms에도 이용하니까 따로 빼둬야하지 않을까 ? 아니면 요청 하나하나에 힘을 실어야하기에 ㅇㅇ
