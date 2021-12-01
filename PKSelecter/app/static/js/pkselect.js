@@ -83,7 +83,7 @@ function onclick() {
 var ddayBtnshow = 0;
 
 function getDday() {
-    const vacation = new Date(2021,11,21,00,00,00);
+    const vacation = new Date("2021-12-21:00:00:00+0900");
     const nowDay = new Date();
     const gap = vacation - nowDay
     const day = Math.floor(gap / (1000 * 60 * 60 * 24));
@@ -218,15 +218,15 @@ function makeTableBonetablebysubject(datatype, tabletitle) {
     document.querySelector(".tablebone").appendChild(table);
     th[1] = document.createElement('th');
     th[1].innerHTML = "항목";
-    th[1].className = `th_${tabletitle}`;
+    th[1].className = `th_${tabletitle}_${datatype}`;
     table.appendChild(th[1]);
     th[2] = document.createElement('th');
     th[2].innerHTML = "내용";
-    th[2].className = `th_${tabletitle}`;
+    th[2].className = `th_${tabletitle}_${datatype}`;
     table.appendChild(th[2]);
     th[3] = document.createElement('th');
     th[3].innerHTML = "마감 기한";
-    th[3].className = `th_${tabletitle}`;
+    th[3].className = `th_${tabletitle}_${datatype}`;
     table.appendChild(th[3]);
 }
 
@@ -241,8 +241,8 @@ function showtablebysubject(answer, subjectname, datatype) {
             let tr = document.createElement('tr');
             tr.innerHTML = "<td>모두 완료하셨습니다 :)</td>";
             document.getElementById(`${subjectname[X]}_${datatype}`).appendChild(tr);
-            for (let i = 0; i < 6; i++) {
-                document.getElementsByClassName(`th_${subjectname[X]}`)[i].style.display = "none";
+            for (let i = 0; i < 3; i++) {
+                document.getElementsByClassName(`th_${subjectname[X]}_${datatype}`)[i].style.display = "none";
             }
         } else {
             for (let i = 0; i < answer[X].length; i++) {
@@ -265,9 +265,14 @@ function showtablebysubject(answer, subjectname, datatype) {
                 tr.appendChild(td[1]);
                 tr.appendChild(td[2]);
                 let today = getToday();
-                let compareanswertoday =answer[X][i]['date_deadline'].split(' ');
+                let compareanswertoday = answer[X][i]['date_deadline'].split(' ');
                 let middlestep = compareanswertoday[0].split('.');
-                let compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
+                let compareanswertomorrow
+                if (parseInt(middlestep[2]) - 1 < 10) {
+                    compareanswertomorrow = middlestep[0] + "." + middlestep[1] + ".0" + +(parseInt(middlestep[2]) - 1);
+                } else {
+                    compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
+                }
                 if (today === compareanswertoday[0] || today === compareanswertomorrow) {
                     marktodayitem(td[1], td[2]);
                 }
@@ -429,8 +434,13 @@ function showtablebycategory(answer, T, datatype, category) {
                     let today = getToday();
                     let compareanswertoday = answer[i][k]['date_deadline'].split(' ');
                     let middlestep = compareanswertoday[0].split('.');
-                    let compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
-                    if (today === compareanswertoday[0] || today === compareanswertomorrow) {
+                    let compareanswertomorrow
+                    if (parseInt(middlestep[2]) - 1 < 10) {
+                        compareanswertomorrow = middlestep[0] + "." + middlestep[1] + ".0" + +(parseInt(middlestep[2]) - 1);
+                    } else {
+                        compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
+                    }
+                    if (today == compareanswertoday[0] || today == compareanswertomorrow) {
                         marktodayitem(td[k][1], td[k][2]);
                     }
                     document.getElementById(T[i][datatype]).appendChild(row_1[k]);
