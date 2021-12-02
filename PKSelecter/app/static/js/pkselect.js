@@ -82,10 +82,9 @@ function onclick() {
 
 var ddayBtnshow = 0;
 
-function getDday() {
-    const vacation = new Date("2021-12-21:00:00:00+0900");
+function getremarkedDday(comparedate) {
     const nowDay = new Date();
-    const gap = vacation - nowDay
+    const gap = comparedate - nowDay;
     const day = Math.floor(gap / (1000 * 60 * 60 * 24));
     let result = day + 1;
     return result;
@@ -94,7 +93,8 @@ function getDday() {
 function ddayBtnonclick() {
     const delectBtn = document.querySelector('.ddayBtn');
     if (ddayBtnshow == 1) {
-        let Dday = getDday();
+        let vacationdate = new Date(2021,11,21);
+        let Dday = getremarkedDday(vacationdate);
         delectBtn.style.backgroundColor = 'var(--color-white)';
         delectBtn.style.color = 'var(--color-black)';
         delectBtn.style.border = "2px solid var(--color-Basic-navy)";
@@ -264,16 +264,10 @@ function showtablebysubject(answer, subjectname, datatype) {
                 }
                 tr.appendChild(td[1]);
                 tr.appendChild(td[2]);
-                let today = getToday();
-                let compareanswertoday = answer[X][i]['date_deadline'].split(' ');
-                let middlestep = compareanswertoday[0].split('.');
-                let compareanswertomorrow
-                if (parseInt(middlestep[2]) - 1 < 10) {
-                    compareanswertomorrow = middlestep[0] + "." + middlestep[1] + ".0" + +(parseInt(middlestep[2]) - 1);
-                } else {
-                    compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
-                }
-                if (today === compareanswertoday[0] || today === compareanswertomorrow) {
+                let middlestep = answer[X][i]['date_deadline'].split(' ')[0].split('.');
+                let comparedate = new Date(middlestep[0], parseInt(middlestep[1]) - 1, middlestep[2]);
+                let dday = getremarkedDday(comparedate);
+                if (dday == 0 || dday == 1 ) {
                     marktodayitem(td[1], td[2]);
                 }
             }
@@ -431,18 +425,15 @@ function showtablebycategory(answer, T, datatype, category) {
                         td[k][1].innerHTML = answer[i][k]['context'];
                         td[k][2].innerHTML = putthirdcolumn(answer[i][k]['date_deadline']);
                     }
-                    let today = getToday();
-                    let compareanswertoday = answer[i][k]['date_deadline'].split(' ');
-                    let middlestep = compareanswertoday[0].split('.');
-                    let compareanswertomorrow
-                    if (parseInt(middlestep[2]) - 1 < 10) {
-                        compareanswertomorrow = middlestep[0] + "." + middlestep[1] + ".0" + +(parseInt(middlestep[2]) - 1);
-                    } else {
-                        compareanswertomorrow = middlestep[0] + "." + middlestep[1] + "." + (parseInt(middlestep[2]) - 1);
-                    }
-                    if (today == compareanswertoday[0] || today == compareanswertomorrow) {
+            
+                    let middlestep = answer[i][k]['date_deadline'].split(' ')[0].split('.');
+                    let comparedate = new Date(middlestep[0], parseInt(middlestep[1]) - 1, middlestep[2]);
+                    let dday = getremarkedDday(comparedate);
+                    if (dday == 0 || dday == 1 ) {
                         marktodayitem(td[k][1], td[k][2]);
                     }
+
+
                     document.getElementById(T[i][datatype]).appendChild(row_1[k]);
                     for (let p = 0; p < 3; p++) {
                         row_1[k].appendChild(td[k][p]);
