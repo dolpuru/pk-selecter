@@ -298,6 +298,9 @@ function arrangetablebysubject(data) {
             }
         }
     }
+    for(let i = 0; i< data['subject'].length;i++){
+        if(answer[i] == null) answer[i] = new Array();
+    }
     return answer;
 }
 
