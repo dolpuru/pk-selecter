@@ -14,8 +14,7 @@
      PKSelct가 수업 관련 정보 모아서 보여줄게요. 
 </h6>
 
-위에 처럼 움짤넣기 깃북도 추가하기 
-https://doongu.gitbook.io/pk_select/
+개발문서 확인하기 : https://doongu.gitbook.io/pk_select/
 
 
 
